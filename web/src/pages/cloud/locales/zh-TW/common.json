@@ -1,0 +1,30 @@
+{
+  "cloud": {
+    "name": "雲平臺",
+    "apps": {
+      "name": "應用中心",
+      "action": {
+        "login": "登入",
+        "install": "安裝",
+        "uninstall": "卸載",
+        "update": "更新",
+        "close": "取消"
+      },
+      "fields": {
+        "name": "應用",
+        "time": "版本",
+        "update": "更新",
+        "username": "用戶名",
+        "password": "密碼"
+      },
+      "tips": {
+        "uninstall": "卸載該應用不可恢復，需驗證使用者密碼，請謹慎操作",
+        "update": "發現新版本，是否需要更新？",
+        "loading": "處理中，請稍後查看日誌"
+      },
+      "validator": {
+        "url": "請輸入安裝的地址"
+      }
+    }
+  }
+}

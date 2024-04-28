@@ -1,0 +1,15 @@
+app:
+    name: Dux
+    lang: zh-CN
+    debug: true
+    secret: a9dfda61e965d5101dfbf31e959fe096
+    domain: 'http://duxcms.test'
+server:
+    port: 8900
+    timeout: 30
+vite:
+    dev: true
+    port: 5173
+manage:
+    indexName: cms
+    baiduMap:

@@ -1,0 +1,14 @@
+type: local
+maxsize: 10240
+ext:
+driver:
+  local:
+    type: local
+    path: ./public/uploads
+    public_url: http://0.0.0.0:8080
+  qiniu:
+    type: qiniu
+    accessKey:
+    secretKey:
+    bucket:
+    public_url: http://cdn.xxxx.com

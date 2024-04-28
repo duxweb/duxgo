@@ -1,0 +1,118 @@
+{
+  "copyright": "All rights reserved ©  Duxweb 2023",
+  "userMenu": {
+    "setting": "set up"
+  },
+  "admin": {
+    "title": "Middle and backend management system"
+  },
+  "system": {
+    "name": "system",
+    "userGroup": {
+      "name": "user management "
+    },
+    "stats": {
+      "name": "general situation"
+    },
+    "total": {
+      "name": "running state ",
+      "general": {
+        "title": "System Overview",
+        "cpuLoad": "CPU load",
+        "cpuUse": "CPU usage",
+        "memUse": "Memory usage",
+        "diskUse": "Hard disk occupancy"
+      },
+      "env": {
+        "title": "environmental information ",
+        "php": "PHP version",
+        "mysql": "MySQL version",
+        "redis": "Redis version",
+        "time": "Server time",
+        "gdExt": "GD extension",
+        "imagickExt": "Imagick extension",
+        "redisExt": "Redis extension",
+        "zipExt": "Zip extension",
+        "on": "support",
+        "off": "Not supported"
+      },
+      "speed": {
+        "title": "Station speed measurement",
+        "desc": "This speed measurement is provided by the speed measurement network, for more detailed speed measurement",
+        "view": "Click to access",
+        "start": "Start measuring speed",
+        "speed": "response speed",
+        "timeout": "overtime",
+        "domain": "Speed domain name",
+        "line": "Select route",
+        "loading": "Line loading",
+        "token": "Speed measurement key",
+        "tokenDesc": "First time use, please",
+        "tokenUrl": "Get Token"
+      },
+      "area": {
+        "title": "Speed measurement area",
+        "area": "region",
+        "line": "line",
+        "time": "response speed"
+      }
+    },
+    "user": {
+      "name": "User List",
+      "tabs": {
+        "all": "whole",
+        "enabled": "Enable",
+        "disabled": "Disabled"
+      },
+      "fields": {
+        "roles": "role",
+        "nickname": "nickname",
+        "username": "user name",
+        "avatar": "Avatar",
+        "password": "password",
+        "status": "state"
+      }
+    },
+    "role": {
+      "name": "Role List",
+      "fields": {
+        "permission": "authority",
+        "name": "name"
+      }
+    },
+    "logGroup": {
+      "name": "system log"
+    },
+    "operate": {
+      "name": "Operation records",
+      "fields": {
+        "user": "user",
+        "client": "client",
+        "request": "request",
+        "requestMethod": "Request Method",
+        "requestUrl": "Request Url",
+        "requestTime": "Request time",
+        "requestParams": "Request parameters"
+      },
+      "filters": {
+        "userPlaceholder": "Please search and select a user",
+        "method": {
+          "placeholder": "Please select a method",
+          "post": "establish",
+          "put": "edit",
+          "patch": "update",
+          "delete": "delete"
+        }
+      }
+    },
+    "api": {
+      "name": "Interface authorization",
+      "fields": {
+        "name": "name",
+        "secretId": "Secret Id",
+        "secretKey": "Secret Key",
+        "status": "state"
+      }
+    }
+  }
+}

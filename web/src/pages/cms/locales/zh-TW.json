@@ -1,0 +1,60 @@
+{
+  "cms": {
+    "dashboard": {
+      "name": "概況",
+      "nums": {
+        "article": "文章數量",
+        "pv": "網站PV",
+        "uv": "網站UV",
+        "spider": "蜘蛛爬蟲"
+      },
+      "views": {
+        "name": "訪問統計",
+        "pv": "訪問量",
+        "uv": "訪客量" 
+      },
+      "unknown": "未知",
+      "spider": "蜘蛛統計",
+      "source": "瀏覽器來源",
+      "area": "地區來源",
+      "article": {
+        "name": "近期文章",
+        "pv": "訪問量",
+        "date": "發佈日期"
+      },
+      "push": {
+        "name": "發佈統計",
+        "num": "數量"
+      },
+      "class": {
+        "name": "分類統計",
+        "num": "數量"
+      },
+      "noData": "暫無數據"
+    },
+    "name": "網站管理",
+    "setting": {
+      "name": "網站設定",
+      "fields": {
+        "title": "網站標題",
+        "titleHelp": "網站頭部標題",
+        "desc": "網站描述",
+        "descHelp": "網站描述資訊",
+        "keyword": "關鍵字",
+        "keywordHelp": "網站關鍵字資訊",
+        "copyright": "版權資訊",
+        "copyrightHelp": "網站版權資訊"
+      }
+    },
+    "theme": {
+      "name": "範本管理",
+      "default": "默認",
+      "info": "主題說明",
+      "empty": "暫無",
+      "change": "主題切換",
+      "changeConfirm": "確認切換嗎",
+      "config": "主題配寘",
+      "addField": "添加欄位"
+    }
+  }
+}

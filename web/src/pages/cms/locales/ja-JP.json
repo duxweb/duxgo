@@ -1,0 +1,60 @@
+{
+  "cms": {
+    "dashboard": {
+      "name": "概要",
+      "nums": {
+        "article": "記事数",
+        "pv": "サイトPV",
+        "uv": "サイトUV",
+        "spider": "くもの爬虫類"
+      },
+      "views": {
+        "name": "アクセス統計",
+        "pv": "アクセス",
+        "uv": "訪問者数" 
+      },
+      "unknown": "不明",
+      "spider": "クモ統計",
+      "source": "ブラウザソース",
+      "area": "地域ソース",
+      "article": {
+        "name": "最近の記事",
+        "pv": "アクセス",
+        "date": "公開日"
+      },
+      "push": {
+        "name": "リリース統計",
+        "num": "数量"
+      },
+      "class": {
+        "name": "分類統計",
+        "num": "数量"
+      },
+      "noData": "データが一時的にありません"
+    },
+    "name": "サイト管理",
+    "setting": {
+      "name": "サイトの設定",
+      "fields": {
+        "title": "サイトタイトル",
+        "titleHelp": "サイトヘッダヘッダ",
+        "desc": "サイトの説明",
+        "descHelp": "サイト記述情報",
+        "keyword": "キーワード",
+        "keywordHelp": "サイトキーワード情報",
+        "copyright": "著作権情報",
+        "copyrightHelp": "サイト著作権情報"
+      }
+    },
+    "theme": {
+      "name": "テンプレート管理",
+      "default": "デフォルト",
+      "info": "トピックの説明",
+      "empty": "しばらく",
+      "change": "トピックの切り替え",
+      "changeConfirm": "切り替えを確認しますか",
+      "config": "トピック構成",
+      "addField": "フィールドの追加"
+    }
+  }
+}

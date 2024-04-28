@@ -1,0 +1,60 @@
+{
+  "cms": {
+    "dashboard": {
+      "name": "general situation",
+      "nums": {
+        "article": "Number of articles",
+        "pv": "Site PV",
+        "uv": "Site UV",
+        "spider": "Spider reptile"
+      },
+      "views": {
+        "name": "Access Statistics",
+        "pv": "Visits",
+        "uv": "Visitor volume" 
+      },
+      "unknown": "unknown",
+      "spider": "Spider statistics",
+      "source": "Browser Source",
+      "area": "Regional sources",
+      "article": {
+        "name": "Recent articles",
+        "pv": "Visits",
+        "date": "Release date"
+      },
+      "push": {
+        "name": "Publish Statistics",
+        "num": "quantity"
+      },
+      "class": {
+        "name": "Classification statistics",
+        "num": "quantity"
+      },
+      "noData": "There is currently no data available"
+    },
+    "name": "Site Management",
+    "setting": {
+      "name": "Site Settings",
+      "fields": {
+        "title": "Site Title",
+        "titleHelp": "Site header title",
+        "desc": "Site Description",
+        "descHelp": "Site Description Information",
+        "keyword": "keyword",
+        "keywordHelp": "Site keyword information",
+        "copyright": "Copyright Information",
+        "copyrightHelp": "Site copyright information"
+      }
+    },
+    "theme": {
+      "name": "Template Management",
+      "default": "default",
+      "info": "Theme Description",
+      "empty": "Currently unavailable",
+      "change": "Theme switching",
+      "changeConfirm": "Are you sure to switch",
+      "config": "Theme configuration",
+      "addField": "Add Field"
+    }
+  }
+}

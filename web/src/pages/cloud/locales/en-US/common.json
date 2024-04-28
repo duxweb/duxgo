@@ -1,0 +1,30 @@
+{
+  "cloud": {
+    "name": "Cloud platform",
+    "apps": {
+      "name": "Application Center",
+      "action": {
+        "login": "Login",
+        "install": "install",
+        "uninstall": "uninstall",
+        "update": "update",
+        "close": "cancel"
+      },
+      "fields": {
+        "name": "application",
+        "time": "version",
+        "update": "update",
+        "username": "user name",
+        "password": "password"
+      },
+      "tips": {
+        "uninstall": "Uninstalling this application is not recoverable and requires verifying the user password. Please proceed with caution",
+        "update": "Discovered a new version, do you need to update it?",
+        "loading": "Processing, please check the log later"
+      },
+      "validator": {
+        "url": "Please enter the installation address"
+      }
+    }
+  }
+}

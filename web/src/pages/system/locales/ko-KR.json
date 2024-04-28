@@ -1,0 +1,118 @@
+{
+  "copyright": "All rights reserved © duxweb 2023",
+  "userMenu": {
+    "setting": "설치"
+  },
+  "admin": {
+    "title": "중간 백그라운드 관리 시스템"
+  },
+  "system": {
+    "name": "시스템",
+    "userGroup": {
+      "name": "사용자 관리"
+    },
+    "stats": {
+      "name": "개요"
+    },
+    "total": {
+      "name": "실행 상태",
+      "general": {
+        "title": "시스템 프로필",
+        "cpuLoad": "CPU 로드",
+        "cpuUse": "CPU 사용량",
+        "memUse": "메모리 사용량",
+        "diskUse": "하드 드라이브 사용량"
+      },
+      "env": {
+        "title": "환경 정보",
+        "php": "PHP 버전",
+        "mysql": "Mysql 버전",
+        "redis": "Redis 버전",
+        "time": "서버 시간",
+        "gdExt": "gd 확장",
+        "imagickExt": "imagick 확장",
+        "redisExt": "redis 확장",
+        "zipExt": "zip 확장",
+        "on": "지원",
+        "off": "지원되지 않음"
+      },
+      "speed": {
+        "title": "사이트 속도 측정",
+        "desc": "이 속도 측정은 속도 측정망에서 제공하며, 더 자세한 속도 측정",
+        "view": "클릭 액세스",
+        "start": "속도 측정 시작",
+        "speed": "응답 속도",
+        "timeout": "시간 초과",
+        "domain": "속도 측정 도메인 이름",
+        "line": "라인 선택",
+        "loading": "라인 로드 중",
+        "token": "속도 측정 키",
+        "tokenDesc": "처음 사용하려면",
+        "tokenUrl": "Token 가져오기"
+      },
+      "area": {
+        "title": "속도 측정 지역",
+        "area": "지역",
+        "line": "회선",
+        "time": "응답 속도"
+      }
+    },
+    "user": {
+      "name": "사용자 목록",
+      "tabs": {
+        "all": "모두",
+        "enabled": "활성화",
+        "disabled": "비활성화"
+      },
+      "fields": {
+        "roles": "역할",
+        "nickname": "닉네임",
+        "username": "사용자 이름",
+        "avatar": "프로필 사진",
+        "password": "암호",
+        "status": "상태"
+      }
+    },
+    "role": {
+      "name": "역할 목록",
+      "fields": {
+        "permission": "권한",
+        "name": "이름"
+      }
+    },
+    "logGroup": {
+      "name": "시스템 로그"
+    },
+    "operate": {
+      "name": "작업 레코드",
+      "fields": {
+        "user": "사용자",
+        "client": "클라이언트",
+        "request": "요청",
+        "requestMethod": "요청 방법",
+        "requestUrl": "Url 요청",
+        "requestTime": "요청 시간",
+        "requestParams": "요청 매개변수"
+      },
+      "filters": {
+        "userPlaceholder": "사용자 선택 검색",
+        "method": {
+          "placeholder": "방법을 선택하십시오.",
+          "post": "작성",
+          "put": "편집",
+          "patch": "업데이트",
+          "delete": "삭제"
+        }
+      }
+    },
+    "api": {
+      "name": "인터페이스 인증",
+      "fields": {
+        "name": "이름",
+        "secretId": "Secret Id",
+        "secretKey": "Secret Key",
+        "status": "상태"
+      }
+    }
+  }
+}

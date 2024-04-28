@@ -1,0 +1,118 @@
+{
+  "copyright": "All rights reserved © Duxweb 2023",
+  "userMenu": {
+    "setting": "设置"
+  },
+  "admin": {
+    "title": "中后台管理系统"
+  },
+  "system": {
+    "name": "系统",
+    "userGroup": {
+      "name": "用户管理"
+    },
+    "stats": {
+      "name": "概况"
+    },
+    "total": {
+      "name": "运行状态",
+      "general": {
+        "title": "系统概况",
+        "cpuLoad": "CPU 负载",
+        "cpuUse": "CPU 占用",
+        "memUse": "内存占用",
+        "diskUse": "硬盘占用"
+      },
+      "env": {
+        "title": "环境信息",
+        "php": "PHP 版本",
+        "mysql": "Mysql 版本",
+        "redis": "Redis 版本",
+        "time": "服务器时间",
+        "gdExt": "gd 扩展",
+        "imagickExt": "imagick 扩展",
+        "redisExt": "redis 扩展",
+        "zipExt": "zip 扩展",
+        "on": "支持",
+        "off": "不支持"
+      },
+      "speed": {
+        "title": "站点测速",
+        "desc": "本测速由测速网提供，更详细测速 ",
+        "view": "点击访问",
+        "start": "开始测速",
+        "speed": "响应速度",
+        "timeout": "超时",
+        "domain": "测速域名",
+        "line": "选择线路",
+        "loading": "线路加载中",
+        "token": "测速密钥",
+        "tokenDesc": "首次使用请",
+        "tokenUrl": "获取 Token"
+      },
+      "area": {
+        "title": "测速地区",
+        "area": "地区",
+        "line": "线路",
+        "time": "响应速度"
+      }
+    },
+    "user": {
+      "name": "用户列表",
+      "tabs": {
+        "all": "全部",
+        "enabled": "启用",
+        "disabled": "禁用"
+      },
+      "fields": {
+        "roles": "角色",
+        "nickname": "昵称",
+        "username": "用户名",
+        "avatar": "头像",
+        "password": "密码",
+        "status": "状态"
+      }
+    },
+    "role": {
+      "name": "角色列表",
+      "fields": {
+        "permission": "权限",
+        "name": "名称"
+      }
+    },
+    "logGroup": {
+      "name": "系统日志"
+    },
+    "operate": {
+      "name": "操作记录",
+      "fields": {
+        "user": "用户",
+        "client": "客户端",
+        "request": "请求",
+        "requestMethod": "请求方法",
+        "requestUrl": "请求 Url",
+        "requestTime": "请求时间",
+        "requestParams": "请求参数"
+      },
+      "filters": {
+        "userPlaceholder": "请搜索选择用户",
+        "method": {
+          "placeholder": "请选择方法",
+          "post": "创建",
+          "put": "编辑",
+          "patch": "更新",
+          "delete": "删除"
+        }
+      }
+    },
+    "api": {
+      "name": "接口授权",
+      "fields": {
+        "name": "名称",
+        "secretId": "Secret Id",
+        "secretKey": "Secret Key",
+        "status": "状态"
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+default:
+  level: debug
+  compress: false
+  maxAge: 365
+  maxBackups: 100
+  maxSize: 1
+db:
+  level: debug
+request:
+  level: debug
+websocket:
+  level: debug
