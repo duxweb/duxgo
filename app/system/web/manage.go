@@ -1,11 +1,14 @@
 package web
 
 import (
+	"fmt"
 	"github.com/duxweb/go-fast/config"
 	"github.com/duxweb/go-fast/global"
 	"github.com/labstack/echo/v4"
 	"github.com/samber/lo"
 	"github.com/tidwall/gjson"
+	"net"
+	"time"
 )
 
 // @RouteGroup(app="web", name = "manage", route = "/manage")
@@ -19,14 +22,22 @@ func Location(ctx echo.Context) error {
 func Index(ctx echo.Context) error {
 
 	file, err := global.StaticFs.ReadFile("web/.vite/manifest.json")
+	isManifest := true
 	if err != nil {
-		//return err
+		isManifest = false
 	}
+
 	json := gjson.ParseBytes(file)
 
 	vite := config.Load("use").GetStringMap("vite")
-	vite["port"] = lo.Ternary[any](vite["port"] != nil, vite["port"], 5173)
-	vite["dev"] = lo.Ternary[any](vite["dev"] != nil, vite["dev"], false)
+	port := lo.Ternary[any](vite["port"] != nil, vite["port"], 5173)
+	dev := PortCheck(5173)
+
+	if !isManifest && !dev {
+		return echo.NewHTTPError(500, "未编译前端或者未开启前端服务")
+	}
+	vite["port"] = port
+	vite["dev"] = dev
 
 	manage := config.Load("use").GetStringMap("manage")
 
@@ -45,6 +56,15 @@ func Index(ctx echo.Context) error {
 	}
 
 	ctx.Set("tpl", "manage")
-
 	return ctx.Render(200, "manage.gohtml", data)
+}
+
+func PortCheck(port int) bool {
+	address := fmt.Sprintf(":%d", port)
+	conn, err := net.DialTimeout("tcp", address, 50*time.Millisecond)
+	if err != nil {
+		return false
+	}
+	defer conn.Close()
+	return true
 }

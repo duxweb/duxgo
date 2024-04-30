@@ -8,7 +8,6 @@ server:
     port: 8900
     timeout: 30
 vite:
-    dev: true
     port: 5173
 manage:
     indexName: cms

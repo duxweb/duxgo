@@ -14,9 +14,9 @@ var Annotations = []*annotation.File{
 			{
 				Name: "Resource",
 				Params: map[string]any{
-					"app":   "web",
+					"app":   "admin",
 					"name":  "system.api",
-					"route": "/system",
+					"route": "/system/api",
 				},
 				Func: appSystemAdmin.ApiRes,
 			},
@@ -59,6 +59,20 @@ var Annotations = []*annotation.File{
 					"route":  "/menu",
 				},
 				Func: appSystemAdmin.Menu,
+			},
+		},
+	},
+	{
+		Name: "dux-project/app/system/admin",
+		Annotations: []*annotation.Annotation{
+			{
+				Name: "Resource",
+				Params: map[string]any{
+					"app":   "admin",
+					"name":  "system.user",
+					"route": "/system/user",
+				},
+				Func: appSystemAdmin.UserRes,
 			},
 		},
 	},

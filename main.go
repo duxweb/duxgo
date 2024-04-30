@@ -8,18 +8,15 @@ import (
 	dux "github.com/duxweb/go-fast"
 )
 
-//go:embed views/*.gohtml
-var ViewsFs embed.FS
-
-//go:embed static/*
+//go:embed all:static
 var StaticFs embed.FS
 
 func main() {
 
 	app := dux.New()
-	app.RegisterTplFS("manage", ViewsFs)
-	app.RegisterStaticFs(StaticFs)
-	app.RegisterAnnotations(runtime.Annotations)
+
+	app.SetStaticFs(StaticFs)
+	app.SetAnnotations(runtime.Annotations)
 	app.RegisterApp(home.App, system.App)
 	app.Run()
 }

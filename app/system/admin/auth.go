@@ -8,8 +8,8 @@ import (
 	"github.com/duxweb/go-fast/helper"
 	"github.com/duxweb/go-fast/i18n"
 	"github.com/duxweb/go-fast/menu"
-	"github.com/duxweb/go-fast/request"
 	"github.com/duxweb/go-fast/response"
+	"github.com/duxweb/go-fast/validator"
 	"github.com/go-errors/errors"
 	"github.com/golang-module/carbon/v2"
 	"github.com/labstack/echo/v4"
@@ -29,7 +29,7 @@ func Login(ctx echo.Context) error {
 		Username string `json:"username" validate:"required" validateMsg:"请输入账号"`
 		Password string `json:"password" validate:"required" validateMsg:"请输入密码"`
 	}
-	if err := request.RequestParser(ctx, &params); err != nil {
+	if err := validator.RequestParser(ctx, &params); err != nil {
 		return err
 	}
 
@@ -84,7 +84,7 @@ func Check(ctx echo.Context) error {
 	var params struct {
 		Token string `json:"token" validate:"required" validateMsg:"token does not exist"`
 	}
-	if err := request.RequestParser(ctx, &params); err != nil {
+	if err := validator.RequestParser(ctx, &params); err != nil {
 		return err
 	}
 	ctx.Request().Header.Set("Authorization", params.Token)

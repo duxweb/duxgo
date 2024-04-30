@@ -19,11 +19,11 @@ func App() {
 	})
 }
 
-func Init() {
+func Init(t *app.Dux) {
 	route.Set("web", route.New(""))
 }
 
-func Register() {
+func Register(t *app.Dux) {
 	group := route.Get("web")
 	group.Get("/test", func(c echo.Context) error {
 		return c.String(http.StatusOK, "Hello, World!")
