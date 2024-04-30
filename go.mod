@@ -8,6 +8,7 @@ require (
 	github.com/duxweb/go-fast v0.0.0
 	github.com/go-errors/errors v1.5.1
 	github.com/golang-module/carbon/v2 v2.3.12
+	github.com/gookit/goutil v0.6.15
 	github.com/labstack/echo/v4 v4.11.4
 	github.com/mileusna/useragent v1.3.4
 	github.com/samber/lo v1.38.1
@@ -83,7 +84,6 @@ require (
 	github.com/tidwall/pretty v1.2.1 // indirect
 	github.com/tklauser/go-sysconf v0.3.11 // indirect
 	github.com/tklauser/numcpus v0.6.0 // indirect
-	github.com/traefik/yaegi v0.16.1 // indirect
 	github.com/urfave/cli/v2 v2.27.1 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/fasttemplate v1.2.2 // indirect

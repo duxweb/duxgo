@@ -16,6 +16,11 @@ const List = () => {
         width: 150,
       },
       {
+        colKey: 'name',
+        title: translate('system.api.fields.name'),
+        ellipsis: true,
+      },
+      {
         colKey: 'secret_id',
         title: translate('system.api.fields.secretId'),
         ellipsis: true,

@@ -10,7 +10,7 @@ import (
 
 // UserRes @Resource(app="admin", name = "system.user", route = "/system/user")
 func UserRes() action.Result {
-	res := action.New[*model.SystemUser](&model.SystemUser{})
+	res := action.New[model.SystemUser](model.SystemUser{})
 	res.QueryMany(func(tx *gorm.DB, params map[string]any, e echo.Context) *gorm.DB {
 
 		keyword := cast.ToString(params["keyword"])
@@ -29,7 +29,7 @@ func UserRes() action.Result {
 		}
 		return tx
 	})
-	res.Transform(func(item *model.SystemUser, index int) map[string]any {
+	res.Transform(func(item model.SystemUser, index int) map[string]any {
 		return map[string]any{
 			"id":       item.ID,
 			"username": item.Username,
