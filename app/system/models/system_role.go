@@ -7,7 +7,7 @@ import (
 
 // SystemRole @AutoMigrate()
 type SystemRole struct {
-	database.ID
+	database.Fields
 	Name       string         `gorm:"size:250" json:"username"`
 	Permission datatypes.JSON `json:"permission"`
 	Users      []SystemUser   `gorm:"many2many:system_user_role"`

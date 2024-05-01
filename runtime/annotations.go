@@ -28,9 +28,9 @@ var Annotations = []*annotation.File{
 			{
 				Name: "RouteGroup",
 				Params: map[string]any{
-					"app":   "admin",
+					"app":   "web",
 					"name":  "auth",
-					"route": "",
+					"route": "/admin",
 				},
 			},
 			{
@@ -50,6 +50,56 @@ var Annotations = []*annotation.File{
 					"route":  "/check",
 				},
 				Func: appSystemAdmin.Check,
+			},
+		},
+	},
+	{
+		Name: "dux-project/app/system/admin",
+		Annotations: []*annotation.Annotation{
+			{
+				Name: "Resource",
+				Params: map[string]any{
+					"app":   "admin",
+					"name":  "system.operate",
+					"route": "/system/operate",
+				},
+				Func: appSystemAdmin.OperateRes,
+			},
+		},
+	},
+	{
+		Name: "dux-project/app/system/admin",
+		Annotations: []*annotation.Annotation{
+			{
+				Name: "Resource",
+				Params: map[string]any{
+					"app":   "admin",
+					"name":  "system.role",
+					"route": "/system/role",
+				},
+				Func: appSystemAdmin.RoleRes,
+			},
+			{
+				Name: "Action",
+				Params: map[string]any{
+					"method": "GET",
+					"name":   "permission",
+					"route":  "/permission",
+				},
+				Func: appSystemAdmin.RolePermission,
+			},
+		},
+	},
+	{
+		Name: "dux-project/app/system/admin",
+		Annotations: []*annotation.Annotation{
+			{
+				Name: "RouteGroup",
+				Params: map[string]any{
+					"app":   "admin",
+					"name":  "auth",
+					"route": "",
+				},
 			},
 			{
 				Name: "Route",
@@ -103,16 +153,6 @@ var Annotations = []*annotation.File{
 				Name:   "AutoMigrate",
 				Params: map[string]any{},
 				Func:   appSystemModels.LogLogin{},
-			},
-		},
-	},
-	{
-		Name: "dux-project/app/system/models",
-		Annotations: []*annotation.Annotation{
-			{
-				Name:   "AutoMigrate",
-				Params: map[string]any{},
-				Func:   appSystemModels.LogOperate{},
 			},
 		},
 	},

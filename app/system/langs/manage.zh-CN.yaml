@@ -1,0 +1,44 @@
+system:
+  name: 系统
+  auth:
+    validator:
+      username: 请输入账号
+      password: 请输入密码
+    error:
+      login: 账号或者密码错误
+      passwordCheck: 三次登录密码错误，等待一分钟
+  user:
+    name: 管理员管理
+    validator:
+      nickname: 请输入昵称
+      username: 请输入用户名
+      usernameExists: 该用户已存在
+      password: 请输入密码
+      roles: 请选择角色
+  role:
+    name: 管理员角色
+    validator:
+      name: 请输入名称
+    permission:
+      name: 权限
+  operate:
+    name: 操作记录
+  total:
+    name: 系统统计
+    stats:
+      name: 运行状态
+    hardware:
+      name: 硬件数据
+    speedNode:
+      name: 测速节点
+    speedTest:
+      name: 站点测速
+    validator:
+      node: 暂无可用测速节点
+      line: 请选择测速线路
+      token: 请填写测速 token
+  api:
+    name: 接口授权
+    validator:
+      name: 请输入名称
+

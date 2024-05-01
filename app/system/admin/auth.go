@@ -7,7 +7,6 @@ import (
 	"github.com/duxweb/go-fast/database"
 	"github.com/duxweb/go-fast/helper"
 	"github.com/duxweb/go-fast/i18n"
-	"github.com/duxweb/go-fast/menu"
 	"github.com/duxweb/go-fast/response"
 	"github.com/duxweb/go-fast/validator"
 	"github.com/go-errors/errors"
@@ -20,7 +19,7 @@ import (
 	"gorm.io/gorm"
 )
 
-// @RouteGroup(app="admin", name="auth", route="")
+// @RouteGroup(app="web", name="auth", route="/admin")
 
 // Login @Route(method="POST", name="login", route="/login")
 func Login(ctx echo.Context) error {
@@ -34,7 +33,7 @@ func Login(ctx echo.Context) error {
 	}
 
 	var user model.SystemUser
-	err := database.Gorm().Model(model.SystemUser{Username: params.Username}).First(&user).Error
+	err := database.Gorm().Model(model.SystemUser{Username: params.Username}).Preload("Roles").First(&user).Error
 	if errors.Is(err, gorm.ErrRecordNotFound) {
 		return response.BusinessError("账号或密码错误")
 	}
@@ -74,7 +73,7 @@ func Login(ctx echo.Context) error {
 				"rolename": rolename,
 			},
 			"token":      "Bearer " + token,
-			"permission": []string{},
+			"permission": user.GetPermission(),
 		},
 	})
 }
@@ -94,7 +93,7 @@ func Check(ctx echo.Context) error {
 	}
 
 	var user model.SystemUser
-	err := database.Gorm().Model(&model.SystemUser{}).Where("id = ?", id).Find(&user).Error
+	err := database.Gorm().Model(&model.SystemUser{}).Preload("Roles").Where("id = ?", id).Find(&user).Error
 	if err != nil {
 		return err
 	}
@@ -123,22 +122,10 @@ func Check(ctx echo.Context) error {
 				"rolename": rolename,
 			},
 			"token":      "Bearer " + token,
-			"permission": []string{},
+			"permission": user.GetPermission(),
 		},
 	})
 
-}
-
-// Menu @Route(method="GET", name="menu", route="/menu")
-func Menu(ctx echo.Context) error {
-	id := auth.NewService("admin", ctx).ID()
-	if id == "" {
-		return response.BusinessError("Expired or incorrect token")
-	}
-
-	return response.Send(ctx, response.Data{
-		Data: menu.Get("admin").Get(),
-	})
 }
 
 func loginCheck(id uint, isPass bool, ctx echo.Context) error {

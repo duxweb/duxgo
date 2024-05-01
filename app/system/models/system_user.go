@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"github.com/duxweb/go-fast/database"
 	"github.com/duxweb/go-fast/helper"
+	"github.com/gookit/goutil/jsonutil"
+	"github.com/samber/lo"
 	"gorm.io/gorm"
 )
 
@@ -27,4 +29,31 @@ type SystemUser struct {
 	Password string       `gorm:"size:250" json:"-"`
 	Status   bool         `gorm:"default:true" json:"status"`
 	Roles    []SystemRole `gorm:"many2many:system_user_role"`
+	//Operates []LogOperate `gorm:"polymorphic:User;polymorphicValue:Admin"`
+}
+
+func (u SystemUser) GetPermission() map[string]bool {
+	permissionData := map[string]bool{}
+	permissions := []string{}
+	for _, role := range u.Roles {
+		items := map[string]bool{}
+		_ = jsonutil.DecodeString(role.Permission.String(), &items)
+		if len(items) == 0 {
+			continue
+		}
+		for k, v := range items {
+			permissionData[k] = v
+			if v {
+				permissions = append(permissions, k)
+			}
+		}
+	}
+
+	for k, v := range permissionData {
+		if lo.IndexOf[string](permissions, k) == -1 {
+			continue
+		}
+		permissionData[k] = v
+	}
+	return permissionData
 }
