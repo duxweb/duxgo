@@ -1,12 +1,10 @@
 package models
 
-import (
-	"github.com/duxweb/go-fast/database"
-)
+import "github.com/duxweb/go-fast/models"
 
 // LogVisit @AutoMigrate()
 type LogVisit struct {
-	database.Fields
+	models.Fields
 	HasType string `gorm:"size:250;comment:关联类型" json:"has_type"`
 	HasId   uint   `gorm:"size:20;comment:关联 id" json:"has_id"`
 	Pv      uint   `gorm:"default:1;comment:访问量" json:"pv"`

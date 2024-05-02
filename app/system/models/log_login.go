@@ -1,12 +1,10 @@
 package models
 
-import (
-	"github.com/duxweb/go-fast/database"
-)
+import "github.com/duxweb/go-fast/models"
 
 // LogLogin @AutoMigrate()
 type LogLogin struct {
-	database.Fields
+	models.Fields
 	UserType string `gorm:"size:250;comment:关联类型" json:"user_type"`
 	UserId   uint   `gorm:"size:20;comment:关联 id" json:"user_id"`
 	Browser  string `gorm:"size:250;comment:浏览器" json:"browser"`

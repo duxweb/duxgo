@@ -13,6 +13,7 @@ import (
 
 // ApiRes @Resource(app="admin", name = "system.api", route = "/system/api")
 func ApiRes() action.Result {
+
 	res := action.New[model.SystemApi](model.SystemApi{})
 
 	res.Transform(func(item model.SystemApi, index int) map[string]any {

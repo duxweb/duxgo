@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/duxweb/go-fast/database"
 	"github.com/duxweb/go-fast/helper"
+	"github.com/duxweb/go-fast/models"
 	"github.com/gookit/goutil/jsonutil"
 	"github.com/samber/lo"
 	"gorm.io/gorm"
@@ -22,7 +23,7 @@ var SystemUserMigrate = database.Migrate{
 }
 
 type SystemUser struct {
-	database.Fields
+	models.Fields
 	Username string       `gorm:"uniqueIndex;size:250" json:"username"`
 	Nickname string       `gorm:"size:250" json:"nickname"`
 	Avatar   string       `gorm:"size:250" json:"avatar"`
