@@ -1,0 +1,44 @@
+system:
+  name: system
+  auth:
+    validator:
+      username: Please enter your account number
+      password: Please enter password
+    error:
+      login: Account or password error
+      passwordCheck: Login password error three times, wait for one minute
+  user:
+    name: Administrator Management
+    validator:
+      nickname: Please enter your nickname
+      username: enter one user name
+      usernameExists: The user already exists
+      password: Please enter password
+      roles: Please select a role
+  role:
+    name: Administrator role
+    validator:
+      name: Please enter a name
+    permission:
+      name: authority
+  operate:
+    name: Operation records
+  total:
+    name: System statistics
+    stats:
+      name: running state 
+    hardware:
+      name: Hardware data
+    speedNode:
+      name: Speed measurement node
+    speedTest:
+      name: Station speed measurement
+    validator:
+      node: There are currently no available speed measurement nodes available
+      line: Please select the speed measurement line
+      token: Please fill in the speed measurement token
+  api:
+    name: Interface authorization
+    validator:
+      name: Please enter a name
+

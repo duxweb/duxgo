@@ -8,5 +8,5 @@ type SystemApi struct {
 	Name      string `gorm:"size:250" json:"name"`
 	SecretID  string `gorm:"size:250" json:"secret_id"`
 	SecretKey string `gorm:"size:250" json:"secret_key"`
-	Status    bool   `gorm:"default:true" json:"status"`
+	Status    *bool  `gorm:"default:true" json:"status"`
 }

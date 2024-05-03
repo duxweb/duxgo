@@ -5,6 +5,7 @@ import (
 	"embed"
 	"github.com/duxweb/go-fast/app"
 	"github.com/duxweb/go-fast/database"
+	"github.com/duxweb/go-fast/middleware"
 	"github.com/duxweb/go-fast/resources"
 	"github.com/duxweb/go-fast/route"
 	"github.com/labstack/echo/v4"
@@ -49,7 +50,7 @@ func Init(t *app.Dux) {
 }
 
 func Register(t *app.Dux) {
-	group := route.Get("web")
+	group := route.Get("web").Group("", "web.test", middleware.VisitorMiddleware)
 	group.Get("/test", func(c echo.Context) error {
 		return c.String(http.StatusOK, "Hello, World!")
 	}, "web.home")

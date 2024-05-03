@@ -7,6 +7,7 @@ import (
 	"github.com/duxweb/go-fast/database"
 	"github.com/duxweb/go-fast/helper"
 	"github.com/duxweb/go-fast/i18n"
+	"github.com/duxweb/go-fast/models"
 	"github.com/duxweb/go-fast/response"
 	"github.com/duxweb/go-fast/validator"
 	"github.com/go-errors/errors"
@@ -98,7 +99,7 @@ func Check(ctx echo.Context) error {
 		return err
 	}
 
-	if !user.Status {
+	if !*user.Status {
 		return response.BusinessError("User Disabled")
 	}
 
@@ -131,9 +132,9 @@ func Check(ctx echo.Context) error {
 func loginCheck(id uint, isPass bool, ctx echo.Context) error {
 	lasSeconds := carbon.Now().SubSeconds(60)
 
-	var data []model.LogLogin
+	var data []models.LogLogin
 	err := database.Gorm().
-		Model(model.LogLogin{}).
+		Model(models.LogLogin{}).
 		Where("user_type", "system_user").
 		Where("user_id = ?", id).
 		Where("status = ?", false).
@@ -145,7 +146,7 @@ func loginCheck(id uint, isPass bool, ctx echo.Context) error {
 		return err
 	}
 	loginCount := len(data)
-	loginLast, err := lo.Last[model.LogLogin](data)
+	loginLast, err := lo.Last[models.LogLogin](data)
 
 	if err == nil && loginCount >= 3 && loginLast.CreatedAt.AddSeconds(60).Gt(carbon.Now()) {
 		return response.BusinessError(i18n.Trans.Get("system.auth.error.passwordCheck"))
@@ -155,13 +156,13 @@ func loginCheck(id uint, isPass bool, ctx echo.Context) error {
 
 	ua := useragent.Parse(userAgentString)
 
-	database.Gorm().Create(&model.LogLogin{
+	database.Gorm().Create(&models.LogLogin{
 		UserType: "system_user",
 		UserId:   id,
 		Browser:  ua.Name + " " + ua.Version,
 		Ip:       ctx.RealIP(),
 		Platform: ua.OS,
-		Status:   isPass,
+		Status:   &isPass,
 	})
 
 	return nil

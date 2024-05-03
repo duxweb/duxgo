@@ -17,6 +17,7 @@ var SystemUserMigrate = database.Migrate{
 		fmt.Println("admin")
 		db.Model(SystemUser{}).Create(&SystemUser{
 			Username: "admin",
+			Nickname: "Admin",
 			Password: helper.HashEncode("admin"),
 		})
 	},
@@ -24,13 +25,12 @@ var SystemUserMigrate = database.Migrate{
 
 type SystemUser struct {
 	models.Fields
-	Username string       `gorm:"uniqueIndex;size:250" json:"username"`
+	Username string       `gorm:"size:250" json:"username"`
 	Nickname string       `gorm:"size:250" json:"nickname"`
 	Avatar   string       `gorm:"size:250" json:"avatar"`
 	Password string       `gorm:"size:250" json:"-"`
-	Status   bool         `gorm:"default:true" json:"status"`
+	Status   *bool        `gorm:"default:true" json:"status"`
 	Roles    []SystemRole `gorm:"many2many:system_user_role"`
-	//Operates []LogOperate `gorm:"polymorphic:User;polymorphicValue:Admin"`
 }
 
 func (u SystemUser) GetPermission() map[string]bool {

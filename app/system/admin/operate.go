@@ -4,7 +4,9 @@ import (
 	model "dux-project/app/system/models"
 	"github.com/duxweb/go-fast/action"
 	"github.com/labstack/echo/v4"
+	"github.com/tidwall/gjson"
 	"gorm.io/gorm"
+	"strings"
 )
 
 // OperateRes @Resource(app="admin", name = "system.operate", route = "/system/operate")
@@ -16,8 +18,22 @@ func OperateRes() action.Result {
 	res.ActionEdit = false
 	res.ActionCreate = false
 
-	res.QueryMany(func(tx *gorm.DB, params map[string]any, e echo.Context) *gorm.DB {
-		return tx.Preload("User").Where("user_type", "admin").Order("id desc")
+	res.QueryMany(func(tx *gorm.DB, params *gjson.Result, e echo.Context) *gorm.DB {
+		tx = tx.Preload("User").Where("user_type", "admin").Order("id desc")
+
+		if params.Get("user").Exists() {
+			tx = tx.Where("user_id = ?", params.Get("user").Int())
+		}
+
+		if params.Get("method").Exists() {
+			tx = tx.Where("request_method = ?", strings.ToUpper(params.Get("method").String()))
+		}
+
+		dates := params.Get("date").Array()
+		if len(dates) > 0 {
+			tx = tx.Where("created_at BETWEEN ? AND ?", dates[0].String(), dates[1].String())
+		}
+		return tx
 	})
 
 	res.Transform(func(item model.LogOperateUser, index int) map[string]any {

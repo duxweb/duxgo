@@ -9,6 +9,7 @@ import (
 	"github.com/gookit/goutil/strutil"
 	"github.com/labstack/echo/v4"
 	"github.com/spf13/cast"
+	"github.com/tidwall/gjson"
 )
 
 // ApiRes @Resource(app="admin", name = "system.api", route = "/system/api")
@@ -26,15 +27,16 @@ func ApiRes() action.Result {
 		}
 	})
 
-	res.Validator(func(data map[string]any, e echo.Context) (validator.ValidatorRule, error) {
+	res.Validator(func(data *gjson.Result, e echo.Context) (validator.ValidatorRule, error) {
 		return validator.ValidatorRule{
 			"name": {Rule: "required", Message: "请填写名称"},
 		}, nil
 	})
 
-	res.Format(func(model *model.SystemApi, data map[string]any, e echo.Context) error {
-		model.Name = cast.ToString(data["name"])
-		model.Status = cast.ToBool(data["status"])
+	res.Format(func(model *model.SystemApi, data *gjson.Result, e echo.Context) error {
+		model.Name = data.Get("name").String()
+		status := data.Get("status").Bool()
+		model.Status = &status
 
 		if model.ID == 0 {
 			str, err := strutil.RandomBytes(16)

@@ -4,6 +4,8 @@ import (
 	appSystemAdmin "dux-project/app/system/admin"
 	appSystemModels "dux-project/app/system/models"
 	appSystemWeb "dux-project/app/system/web"
+	appToolsAdmin "dux-project/app/tools/admin"
+	appToolsModels "dux-project/app/tools/models"
 	"github.com/duxweb/go-fast/annotation"
 )
 
@@ -152,56 +154,6 @@ var Annotations = []*annotation.File{
 			{
 				Name:   "AutoMigrate",
 				Params: map[string]any{},
-				Func:   appSystemModels.LogLogin{},
-			},
-		},
-	},
-	{
-		Name: "dux-project/app/system/models",
-		Annotations: []*annotation.Annotation{
-			{
-				Name:   "AutoMigrate",
-				Params: map[string]any{},
-				Func:   appSystemModels.LogVisit{},
-			},
-		},
-	},
-	{
-		Name: "dux-project/app/system/models",
-		Annotations: []*annotation.Annotation{
-			{
-				Name:   "AutoMigrate",
-				Params: map[string]any{},
-				Func:   appSystemModels.LogVisitData{},
-			},
-		},
-	},
-	{
-		Name: "dux-project/app/system/models",
-		Annotations: []*annotation.Annotation{
-			{
-				Name:   "AutoMigrate",
-				Params: map[string]any{},
-				Func:   appSystemModels.LogVisitSpider{},
-			},
-		},
-	},
-	{
-		Name: "dux-project/app/system/models",
-		Annotations: []*annotation.Annotation{
-			{
-				Name:   "AutoMigrate",
-				Params: map[string]any{},
-				Func:   appSystemModels.LogVisitUv{},
-			},
-		},
-	},
-	{
-		Name: "dux-project/app/system/models",
-		Annotations: []*annotation.Annotation{
-			{
-				Name:   "AutoMigrate",
-				Params: map[string]any{},
 				Func:   appSystemModels.SystemApi{},
 			},
 		},
@@ -254,6 +206,48 @@ var Annotations = []*annotation.File{
 					"route":  "/",
 				},
 				Func: appSystemWeb.Index,
+			},
+		},
+	},
+	{
+		Name: "dux-project/app/tools/admin",
+		Annotations: []*annotation.Annotation{
+			{
+				Name: "RouteGroup",
+				Params: map[string]any{
+					"app":   "admin",
+					"name":  "upload",
+					"route": "/upload",
+				},
+			},
+			{
+				Name: "Route",
+				Params: map[string]any{
+					"method": "POST",
+					"name":   "upload",
+					"route":  "",
+				},
+				Func: appToolsAdmin.Upload,
+			},
+		},
+	},
+	{
+		Name: "dux-project/app/tools/models",
+		Annotations: []*annotation.Annotation{
+			{
+				Name:   "AutoMigrate",
+				Params: map[string]any{},
+				Func:   appToolsModels.ToolsFile{},
+			},
+		},
+	},
+	{
+		Name: "dux-project/app/tools/models",
+		Annotations: []*annotation.Annotation{
+			{
+				Name:   "AutoMigrate",
+				Params: map[string]any{},
+				Func:   appToolsModels.ToolsFileDir{},
 			},
 		},
 	},

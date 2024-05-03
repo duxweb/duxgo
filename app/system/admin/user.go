@@ -5,9 +5,11 @@ import (
 	"github.com/duxweb/go-fast/action"
 	"github.com/duxweb/go-fast/database"
 	"github.com/duxweb/go-fast/helper"
+	"github.com/duxweb/go-fast/validator"
 	"github.com/labstack/echo/v4"
 	"github.com/samber/lo"
 	"github.com/spf13/cast"
+	"github.com/tidwall/gjson"
 	"gorm.io/gorm"
 )
 
@@ -15,20 +17,19 @@ import (
 func UserRes() action.Result {
 	res := action.New[model.SystemUser](model.SystemUser{})
 
-	res.Query(func(tx *gorm.DB, params map[string]any, e echo.Context) *gorm.DB {
+	res.Query(func(tx *gorm.DB, e echo.Context) *gorm.DB {
 		tx = tx.Preload("Roles")
 		return tx
 	})
 
-	res.QueryMany(func(tx *gorm.DB, params map[string]any, e echo.Context) *gorm.DB {
-
-		keyword := cast.ToString(params["keyword"])
+	res.QueryMany(func(tx *gorm.DB, params *gjson.Result, e echo.Context) *gorm.DB {
+		keyword := params.Get("keyword").String()
 		if keyword != "" {
 			keyword = "%" + keyword + "%"
 			tx = tx.Where("username like ? OR nickname like ?", keyword, keyword)
 		}
 
-		switch params["tab"] {
+		switch params.Get("tab").String() {
 		case "1":
 			tx = tx.Where("status = ?", "1")
 			break
@@ -52,21 +53,29 @@ func UserRes() action.Result {
 		}
 	})
 
-	res.Format(func(model *model.SystemUser, data map[string]any, e echo.Context) error {
-		model.Username = cast.ToString(data["username"])
-		model.Nickname = cast.ToString(data["nickname"])
-		model.Avatar = cast.ToString(data["avatar"])
-		model.Status = cast.ToBool(data["status"])
+	res.Validator(func(data *gjson.Result, e echo.Context) (validator.ValidatorRule, error) {
+		return validator.ValidatorRule{
+			"username": {Rule: "required", Message: "请填写用户名"},
+			"nickname": {Rule: "required", Message: "请填写昵称"},
+		}, nil
+	})
 
-		password := cast.ToString(data["password"])
+	res.Format(func(model *model.SystemUser, data *gjson.Result, e echo.Context) error {
+		status := data.Get("status").Bool()
+		model.Username = data.Get("username").String()
+		model.Nickname = data.Get("nickname").String()
+		model.Avatar = data.Get("avatar").String()
+		model.Status = &status
+
+		password := data.Get("password").String()
 		if password != "" {
 			model.Password = helper.HashEncode(password)
 		}
 		return nil
 	})
 
-	res.SaveBefore(func(data *model.SystemUser, params map[string]any) error {
-		roleIds := cast.ToIntSlice(params["roles"])
+	res.SaveBefore(func(data *model.SystemUser, params *gjson.Result) error {
+		roleIds := cast.ToIntSlice(params.Get("roles").Value())
 		roles := []model.SystemRole{}
 		err := database.Gorm().Model(model.SystemRole{}).Find(&roles, roleIds).Error
 		if err != nil {
