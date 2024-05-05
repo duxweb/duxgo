@@ -17,7 +17,7 @@ func ApiRes() action.Result {
 
 	res := action.New[model.SystemApi](model.SystemApi{})
 
-	res.Transform(func(item model.SystemApi, index int) map[string]any {
+	res.Transform(func(item *model.SystemApi, index int) map[string]any {
 		return map[string]any{
 			"id":         item.ID,
 			"name":       item.Name,

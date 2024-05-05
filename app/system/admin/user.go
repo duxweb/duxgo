@@ -40,7 +40,7 @@ func UserRes() action.Result {
 		return tx
 	})
 
-	res.Transform(func(item model.SystemUser, index int) map[string]any {
+	res.Transform(func(item *model.SystemUser, index int) map[string]any {
 		return map[string]any{
 			"id":       item.ID,
 			"username": item.Username,

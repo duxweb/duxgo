@@ -5,7 +5,7 @@ drivers:
   local:
     type: local
     path: ./public/uploads
-    domain: http://0.0.0.0:8080
+    domain: http://0.0.0.0:8900/uploads
   qiniu:
     type: qiniu
     accessKey:

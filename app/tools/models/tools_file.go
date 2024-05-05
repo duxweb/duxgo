@@ -15,6 +15,6 @@ type ToolsFile struct {
 	Name    string `gorm:"comment:文件名" json:"name"`
 	Ext     string `gorm:"size:20;comment:后缀" json:"ext"`
 	Size    uint   `gorm:"comment:大小" json:"size"`
-	Mime    string `gorm:"size:50;comment:MIME" json:"mime"`
+	Mime    string `gorm:"comment:MIME" json:"mime"`
 	Dir     ToolsFileDir
 }

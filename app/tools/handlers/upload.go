@@ -14,6 +14,7 @@ import (
 	"github.com/golang-module/carbon/v2"
 	"github.com/labstack/echo/v4"
 	"github.com/spf13/cast"
+	"mime/multipart"
 	"path/filepath"
 )
 
@@ -32,7 +33,12 @@ func UploadHandler(hasType string, c echo.Context) error {
 	if err != nil {
 		return err
 	}
-	defer openFile.Close()
+	defer func(openFile multipart.File) {
+		err := openFile.Close()
+		if err != nil {
+
+		}
+	}(openFile)
 
 	name := file.Filename
 	size := file.Size

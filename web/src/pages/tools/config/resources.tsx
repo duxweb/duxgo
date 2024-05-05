@@ -96,19 +96,5 @@ export const adminResources = (app: App) => {
         parent: 'tools',
       },
     },
-    {
-      name: 'tools.poster',
-      list: 'tools/poster',
-      create: 'tools/poster/page',
-      edit: 'tools/poster/page/:id',
-      listElenemt: lazyComponent(() => import('../admin/poster/list')),
-      createElenemt: lazyComponent(() => import('../admin/poster/page')),
-      editElenemt: lazyComponent(() => import('../admin/poster/page')),
-      meta: {
-        label: 'tools.poster',
-        icon: 'i-tabler:photo',
-        parent: 'tools',
-      },
-    },
   ])
 }

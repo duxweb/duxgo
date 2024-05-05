@@ -28,7 +28,7 @@ func RoleRes() action.Result {
 		return tx
 	})
 
-	res.Transform(func(item model.SystemRole, index int) map[string]any {
+	res.Transform(func(item *model.SystemRole, index int) map[string]any {
 		permissionData := map[string]bool{}
 		_ = jsonutil.DecodeString(item.Permission.String(), &permissionData)
 
