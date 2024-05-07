@@ -1,5 +1,5 @@
 import { useResource, useCustom, useParsed, useTranslate, useList } from '@refinedev/core'
-import { FormPage } from '@duxweb/dux-refine'
+import { CascaderAsync, FormPage } from '@duxweb/dux-refine'
 import { MagicFormRender } from '@duxweb/dux-extend'
 import { Form, Cascader } from 'tdesign-react/esm'
 
@@ -23,18 +23,6 @@ const Page = () => {
     resource.meta.label = data?.data?.label
   }
 
-  const { data: treeData, isLoading } = useList({
-    resource: 'tools.data',
-    meta: {
-      params: {
-        magic: magic,
-      },
-    },
-    pagination: {
-      mode: 'off',
-    },
-  })
-
   return (
     <FormPage
       formProps={{
@@ -53,15 +41,16 @@ const Page = () => {
     >
       {data?.data?.type == 'tree' && (
         <Form.FormItem label={translate('tools.data.fields.parent')} name='parent_id'>
-          <Cascader
+          <CascaderAsync
+            url='tools/data'
             checkStrictly
-            loading={isLoading}
-            options={treeData?.data}
+            query={{
+              magic: magic,
+            }}
             keys={{
               label: data?.data?.tree_label || 'name',
               value: 'id',
             }}
-            clearable
           />
         </Form.FormItem>
       )}

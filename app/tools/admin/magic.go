@@ -8,7 +8,6 @@ import (
 	"github.com/duxweb/go-fast/database"
 	"github.com/duxweb/go-fast/response"
 	"github.com/duxweb/go-fast/validator"
-	"github.com/gookit/goutil/jsonutil"
 	"github.com/labstack/echo/v4"
 	"github.com/samber/lo"
 	"github.com/tidwall/gjson"
@@ -85,8 +84,8 @@ func MagicRes() action.Result {
 		model.TreeLabel = data.Get("tree_label").String()
 		model.Page = &page
 		model.Inline = &inline
-		model.External = datatypes.JSON(jsonutil.MustString(data.Get("external").Value()))
-		model.Fields = datatypes.JSON(jsonutil.MustString(data.Get("fields").Value()))
+		model.External = datatypes.JSON(data.Get("external").Raw)
+		model.Fields = datatypes.JSON(data.Get("fields").Raw)
 
 		return nil
 	})
@@ -101,9 +100,42 @@ func MagicConfig(c echo.Context) error {
 	if err != nil {
 		return response.BusinessError(err.Error())
 	}
-	fields, _ := json.Marshal(services.MagicConfig(info.Fields))
-	info.Fields = fields
+
+	var fields []model.ToolsMagicFields
+	_ = json.Unmarshal(info.Fields, &fields)
+
+	fieldsJson, _ := json.Marshal(services.MagicConfig(fields))
+	info.Fields = fieldsJson
 	return response.Send(c, response.Data{
 		Data: info,
+	}, 200)
+}
+
+// MagicSource @Action(method = "GET", name = "source", route = "/source")
+func MagicSource(c echo.Context) error {
+	var list []model.ToolsMagicSource
+	database.Gorm().Model(model.ToolsMagicSource{}).Find(&list)
+
+	data := []map[string]any{}
+	for _, source := range list {
+		data = append(data, map[string]any{
+			"label": source.Name,
+			"value": source.ID,
+		})
+	}
+	return response.Send(c, response.Data{
+		Data: data,
+	}, 200)
+}
+
+// MagicSourceData @Action(method = "GET", name = "sourceData", route = "/sourceData")
+func MagicSourceData(c echo.Context) error {
+	name := c.QueryParam("name")
+	data, err := services.GetSourceData(name, []string{}, c)
+	if err != nil {
+		return response.BusinessError(err.Error())
+	}
+	return response.Send(c, response.Data{
+		Data: data,
 	}, 200)
 }

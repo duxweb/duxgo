@@ -14,5 +14,5 @@ type ToolsMagicData struct {
 	CreatedAt carbon.DateTime `json:"created_at"`
 	UpdatedAt carbon.DateTime `json:"updated_at"`
 	Parent    *ToolsMagicData
-	Children  []*ToolsMagicData `gorm:"foreignkey:ParentID" json:"children"`
+	Children  []ToolsMagicData `gorm:"foreignkey:ParentID" json:"children"`
 }

@@ -16,7 +16,7 @@
       }
     },
     "magic": {
-      "name": "数据魔方",
+      "name": "模型管理",
       "fields": {
         "group": "数据分组",
         "unknown": "未知",
@@ -69,6 +69,20 @@
         "groupName": "名称只能字母数字或下划线",
         "groupIcon": "图标名参考",
         "groupIconDoc": "参考文档"
+      }
+    },
+    "magicManage": {
+      "name": "数据魔方"
+    },
+    "magicSource": {
+      "name": "数据源管理",
+      "fields": {
+        "name": "名称",
+        "url": "数据地址",
+        "type": "数据类型",
+        "data": "本地数据",
+        "async": "远程数据",
+        "maps": "数据映射"
       }
     },
     "magicGroup": {

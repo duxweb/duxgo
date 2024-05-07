@@ -1,27 +1,26 @@
 package services
 
 import (
+	model "dux-project/app/tools/models"
 	"encoding/json"
 	"github.com/duxweb/go-fast/validator"
 	"github.com/spf13/cast"
-	"github.com/tidwall/gjson"
 	"strings"
 )
 
-func MagicValidator(fields []byte) validator.ValidatorRule {
-	data := gjson.ParseBytes(fields)
+func MagicValidator(fields []model.ToolsMagicFields) validator.ValidatorRule {
 
 	ruleList := validator.ValidatorRule{}
-	for _, field := range data.Array() {
+	for _, field := range fields {
 
 		rules := []map[string]any{}
-		if field.Get("setting.rules").Exists() {
-			_ = json.Unmarshal([]byte(field.Get("setting.rules").String()), &rules)
+		if field.Setting["rules"] != nil {
+			_ = json.Unmarshal([]byte(field.Setting["rules"].(string)), &rules)
 		}
-		if field.Get("required").Bool() {
+		if field.Required {
 			rules = append(rules, map[string]any{
 				"required": true,
-				"message":  "请填写" + field.Get("label").String(),
+				"message":  "请填写" + field.Label,
 			})
 		}
 
@@ -66,7 +65,7 @@ func MagicValidator(fields []byte) validator.ValidatorRule {
 		}
 
 		if len(tags) > 0 {
-			ruleList[field.Get("name").String()] = validator.ValidatorWarp{
+			ruleList[field.Name] = validator.ValidatorWarp{
 				Message: message,
 				Rule:    strings.Join(tags, ","),
 			}
@@ -76,35 +75,17 @@ func MagicValidator(fields []byte) validator.ValidatorRule {
 	return ruleList
 }
 
-func MagicConfig(fields []byte) []map[string]any {
-
-	data := gjson.ParseBytes(fields)
-
-	result := []map[string]any{}
-
-	for _, item := range data.Array() {
-
-		nItem := map[string]any{}
-		for k, v := range item.Map() {
-			nItem[k] = v.Value()
+func MagicConfig(fields []model.ToolsMagicFields) []model.ToolsMagicFields {
+	for i, item := range fields {
+		if item.Setting["rules"] != nil {
+			rule := []map[string]any{}
+			_ = json.Unmarshal([]byte(item.Setting["rules"].(string)), &rule)
+			item.Setting["rules"] = rule
 		}
-
-		setting := map[string]any{}
-		for k, v := range item.Get("setting").Map() {
-			setting[k] = v.Value()
+		if len(item.Child) > 0 {
+			item.Child = MagicConfig(item.Child)
 		}
-		if item.Get("setting.options").Exists() && item.Get("setting.options").Type == gjson.String {
-			setting["options"] = gjson.Parse(item.Get("setting.options").String()).Value()
-		}
-		if item.Get("setting.rules").Exists() {
-			setting["rules"] = gjson.Parse(item.Get("setting.rules").String()).Value()
-		}
-		nItem["setting"] = setting
-		if item.Get("child").Exists() && item.Get("child").IsArray() {
-			nItem["child"] = ConfigFormat([]byte(item.Get("child").String()))
-		}
-		result = append(result, nItem)
+		fields[i] = item
 	}
-
-	return result
+	return fields
 }

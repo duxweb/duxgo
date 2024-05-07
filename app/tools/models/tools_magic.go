@@ -25,6 +25,18 @@ type ToolsMagic struct {
 	Group     ToolsMagicGroup
 }
 
+type ToolsMagicFields struct {
+	Key      string             `json:"key"`
+	List     bool               `json:"list"`
+	Name     string             `json:"name"`
+	Type     string             `json:"type"`
+	Label    string             `json:"label"`
+	Search   bool               `json:"search"`
+	Setting  map[string]any     `json:"setting"`
+	Required bool               `json:"required"`
+	Child    []ToolsMagicFields `json:"child"`
+}
+
 func GetMagicMenu() []map[string]any {
 	key := []byte("magic.menus")
 	data, err := cache.Injector().Get(key)

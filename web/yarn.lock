@@ -729,10 +729,10 @@
   resolved "https://registry.yarnpkg.com/@colors/colors/-/colors-1.5.0.tgz#bb504579c1cae923e6576a4f5da43d25f97bdbd9"
   integrity sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==
 
-"@duxweb/dux-extend@^0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@duxweb/dux-extend/-/dux-extend-0.1.1.tgz#d32c5fc2474e591ced54babe9d6c2d6419537648"
-  integrity sha512-/ZI0IIwbL2dla3DNqfOmWCN4rnIHED2BgPW1yOnw6iojqH3FbgJCl6u7f+yXUfbKCw3jJDP/clrsuXX/wpawgA==
+"@duxweb/dux-extend@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@duxweb/dux-extend/-/dux-extend-0.2.1.tgz#62276e31925c1cb0049518d43930956f04bef9e4"
+  integrity sha512-h1VnAdLDvHS0MiNmudRmdQS33+hpwZn49tHR18OsOyUDd/tnHoLZx1yFFiLYEa4KuOPeXPoFs5riDtEkW3knyw==
   dependencies:
     "@types/fabric" "^5.3.7"
     fabric "^5.3.0"
@@ -743,10 +743,10 @@
   resolved "https://registry.yarnpkg.com/@duxweb/dux-plugin/-/dux-plugin-0.0.8.tgz#6efa54ff7498bba2526656dfbcde13e0cc77bf0a"
   integrity sha512-tRHBLuLlIBx24zHezLUnIEE/R0NaKbWoYcHq/DiXjH+wHF8t2mcHaDLfpfhMtpKrXi0TFu1jutUpS82aQEy/8Q==
 
-"@duxweb/dux-refine@^0.11.8":
-  version "0.11.8"
-  resolved "https://registry.yarnpkg.com/@duxweb/dux-refine/-/dux-refine-0.11.8.tgz#3f8fc37b8bafd8a4852483de903fe2761265d1f0"
-  integrity sha512-HyVGoK0eByLHDjrLr1OtOi0cFygw99BCE798BqnpqY9BkRpsOO/BD5u+syJhYNReK1Tf5t2V/fVilGq5nt78yw==
+"@duxweb/dux-refine@^0.12.2":
+  version "0.12.2"
+  resolved "https://registry.yarnpkg.com/@duxweb/dux-refine/-/dux-refine-0.12.2.tgz#37084a296e856ec5ffdf72ce19c0c3a9eafeb790"
+  integrity sha512-kF9QS2U+AYwB7eDVc3sjci5jYhbYkE6pakWuq1J2ouocVzJm5Ado2acDYhBDnMe0RM+uuTj9bnfbfXKrMwuL8g==
   dependencies:
     "@ebay/nice-modal-react" "^1.2.13"
     "@iconify-json/tabler" "^1.1.108"
@@ -790,7 +790,7 @@
     react-to-print "^2.15.1"
     remeda "^1.28.0"
     screenfull "^6.0.2"
-    tdesign-react "^1.5.3"
+    tdesign-react "^1.7.0"
     tinymce "^6.8.2"
     unocss "^0.58.6"
     zustand "^4.5.1"
@@ -8953,10 +8953,10 @@ tdesign-icons-react@^0.3.0:
     "@babel/runtime" "^7.16.5"
     classnames "^2.2.6"
 
-tdesign-react@^1.5.3:
-  version "1.5.3"
-  resolved "https://registry.yarnpkg.com/tdesign-react/-/tdesign-react-1.5.3.tgz#10a293e45985abac71f41e41e51cc506a77eb4b2"
-  integrity sha512-vRHySErIGNi+Zz1NgP5xiCVtOD/XiCyxKa3h95bOMIRDUp+pCmBmVKS6lYkIb+t8B7nX71ONyfmEgyvQM/fh/A==
+tdesign-react@^1.7.0:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/tdesign-react/-/tdesign-react-1.7.0.tgz#c7f24bc5a667467c3da70586573f4d83b24be9bb"
+  integrity sha512-sd/WVtyMrnoeySjrR6jLSpeCbq/XfQ75X4uis/EAvcSqjcAI+c4yRJEl0BQ6SoQ7MeV3LzBhvOZIDoP7TS/RqQ==
   dependencies:
     "@babel/runtime" "~7.17.2"
     "@popperjs/core" "~2.11.2"

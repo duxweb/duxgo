@@ -45,6 +45,15 @@ export const adminResources = (app: App) => {
       },
     },
     {
+      name: 'tools.magicManage',
+      meta: {
+        label: 'tools.magicManage',
+        sort: 800,
+        icon: 'i-tabler:template',
+        parent: 'data',
+      },
+    },
+    {
       name: 'tools.magic',
       list: 'tools/magic',
       create: 'tools/magic/page',
@@ -55,7 +64,19 @@ export const adminResources = (app: App) => {
       meta: {
         label: 'tools.magic',
         icon: 'i-tabler:template',
-        parent: 'data',
+        parent: 'tools.magicManage',
+        sort: 0,
+      },
+    },
+
+    {
+      name: 'tools.magicSource',
+      list: 'tools/magicSource',
+      listElenemt: lazyComponent(() => import('../admin/magicSource/list')),
+      meta: {
+        label: 'tools.magicSource',
+        icon: 'i-tabler:template',
+        parent: 'tools.magicManage',
         sort: 0,
       },
     },

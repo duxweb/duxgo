@@ -44,14 +44,45 @@ func MagicDataRes() action.Result {
 		return tx
 	})
 
+	res.ManyAfter(func(models []model.ToolsMagicData, params *gjson.Result, ctx echo.Context) []model.ToolsMagicData {
+		info := ctx.Get("info").(*model.ToolsMagic)
+		actions := ctx.Get("action").(string)
+
+		if actions == "show" {
+			var fields []model.ToolsMagicFields
+			_ = json.Unmarshal(info.Fields, &fields)
+
+			data := services.GetModelData(models)
+			sourceData := services.GetSourceMapsData(data, fields, ctx)
+			data = services.MergeSourceData(data, fields, sourceData)
+			models = services.StructSourceData(data)
+		}
+		return models
+	})
+
+	res.OneAfter(func(models model.ToolsMagicData, params *gjson.Result, ctx echo.Context) model.ToolsMagicData {
+		info := ctx.Get("info").(*model.ToolsMagic)
+		actions := ctx.Get("action").(string)
+
+		if actions == "show" {
+			var fields []model.ToolsMagicFields
+			_ = json.Unmarshal(info.Fields, &fields)
+			data := services.GetModelData([]model.ToolsMagicData{models})
+			sourceData := services.GetSourceMapsData(data, fields, ctx)
+			data = services.MergeSourceData(data, fields, sourceData)
+			models = services.StructSourceData(data)[0]
+		}
+		return models
+	})
+
 	res.Transform(func(item *model.ToolsMagicData, index int) map[string]any {
 		data := map[string]any{}
 		_ = json.Unmarshal(item.Data, &data)
 		data["id"] = item.ID
 
-		results := []map[string]any{}
+		var results []map[string]any
 		for i, vo := range item.Children {
-			results = append(results, res.TransformFun(vo, i))
+			results = append(results, res.TransformFun(&vo, i))
 		}
 		data["children"] = results
 		return data
@@ -59,7 +90,10 @@ func MagicDataRes() action.Result {
 
 	res.Validator(func(data *gjson.Result, e echo.Context) (validator.ValidatorRule, error) {
 		info := e.Get("info").(*model.ToolsMagic)
-		return services.MagicValidator(info.Fields), nil
+
+		var fields []model.ToolsMagicFields
+		_ = json.Unmarshal(info.Fields, &fields)
+		return services.MagicValidator(fields), nil
 	})
 
 	res.Format(func(tx *model.ToolsMagicData, data *gjson.Result, e echo.Context) error {

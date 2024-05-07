@@ -16,6 +16,7 @@ const RenderList = ({ data }: any) => {
     editResource: data?.data?.page ? 'tools.data' : undefined,
     componentShow: () => import('./show'),
     componentEdit: () => import('./modal'),
+    sourceUrl: '',
   })
 
   useEffect(() => {
@@ -53,6 +54,9 @@ const RenderList = ({ data }: any) => {
         },
       }}
       table={table}
+      onData={(data) => {
+        console.log('data', data)
+      }}
       actionRender={() =>
         data?.data?.page ? (
           <Button

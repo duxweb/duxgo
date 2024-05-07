@@ -332,6 +332,24 @@ var Annotations = []*annotation.File{
 				},
 				Func: appToolsAdmin.MagicConfig,
 			},
+			{
+				Name: "Action",
+				Params: map[string]any{
+					"method": "GET",
+					"name":   "source",
+					"route":  "/source",
+				},
+				Func: appToolsAdmin.MagicSource,
+			},
+			{
+				Name: "Action",
+				Params: map[string]any{
+					"method": "GET",
+					"name":   "sourceData",
+					"route":  "/sourceData",
+				},
+				Func: appToolsAdmin.MagicSourceData,
+			},
 		},
 	},
 	{
@@ -359,6 +377,20 @@ var Annotations = []*annotation.File{
 					"route": "/tools/magicGroup",
 				},
 				Func: appToolsAdmin.MagicGroupRes,
+			},
+		},
+	},
+	{
+		Name: "dux-project/app/tools/admin",
+		Annotations: []*annotation.Annotation{
+			{
+				Name: "Resource",
+				Params: map[string]any{
+					"app":   "admin",
+					"name":  "tools.magicSource",
+					"route": "/tools/magicSource",
+				},
+				Func: appToolsAdmin.MagicSourceRes,
 			},
 		},
 	},
@@ -463,6 +495,16 @@ var Annotations = []*annotation.File{
 				Name:   "AutoMigrate",
 				Params: map[string]any{},
 				Func:   appToolsModels.ToolsMagicGroup{},
+			},
+		},
+	},
+	{
+		Name: "dux-project/app/tools/models",
+		Annotations: []*annotation.Annotation{
+			{
+				Name:   "AutoMigrate",
+				Params: map[string]any{},
+				Func:   appToolsModels.ToolsMagicSource{},
 			},
 		},
 	},

@@ -108,6 +108,7 @@ require (
 	github.com/spf13/afero v1.11.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/spf13/viper v1.18.2 // indirect
+	github.com/stretchr/testify v1.9.0 // indirect
 	github.com/subosito/gotenv v1.6.0 // indirect
 	github.com/tencentyun/cos-go-sdk-v5 v0.7.47 // indirect
 	github.com/tidwall/match v1.1.1 // indirect
