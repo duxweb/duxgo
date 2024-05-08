@@ -1,8 +1,12 @@
 db:
   drivers:
     default:
-      file: "./app.db"
-      type: sqlite
+      type: mysql
+      host: localhost
+      database: duxgo
+      username: root
+      password: root
+      port: '3306'
       maxIdleConns: 10
       maxOpenConns: 100
 mongodb:

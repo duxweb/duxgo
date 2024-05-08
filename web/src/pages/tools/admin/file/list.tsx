@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import { useTranslate } from '@refinedev/core'
-import { PrimaryTableCol, Link, Select, Form } from 'tdesign-react/esm'
+import { PrimaryTableCol, Link, Select, Form, Button, Tree } from 'tdesign-react/esm'
 import {
   PageTable,
   useSelect,
@@ -151,59 +151,60 @@ const List = () => {
         table={{
           rowKey: 'id',
         }}
-        filterRender={() => (
-          <>
-            <div>
-              <ButtonModal
-                resource='tools.fileDir'
-                action='create'
-                variant='outline'
-                theme='default'
-                title={translate('tools.file.fields.addDir')}
-                icon={<div className='i-tabler:plus' />}
-                component={() => import('./group')}
-              >
-                <></>
-              </ButtonModal>
-            </div>
-            <Form.FormItem name='dir_id' initialData={options?.[0]?.value}>
-              <Select
-                filterable
-                clearable
-                onSearch={onSearch}
-                options={options}
-                placeholder={translate('tools.file.placeholder.dir')}
-                loading={queryResult.isLoading}
-              />
-            </Form.FormItem>
+        siderRender={() => <SideTree />}
+        // filterRender={() => (
+        //   <>
+        //     <div>
+        //       <ButtonModal
+        //         resource='tools.fileDir'
+        //         action='create'
+        //         variant='outline'
+        //         theme='default'
+        //         title={translate('tools.file.fields.addDir')}
+        //         icon={<div className='i-tabler:plus' />}
+        //         component={() => import('./group')}
+        //       >
+        //         <></>
+        //       </ButtonModal>
+        //     </div>
+        //     <Form.FormItem name='dir_id' initialData={options?.[0]?.value}>
+        //       <Select
+        //         filterable
+        //         clearable
+        //         onSearch={onSearch}
+        //         options={options}
+        //         placeholder={translate('tools.file.placeholder.dir')}
+        //         loading={queryResult.isLoading}
+        //       />
+        //     </Form.FormItem>
 
-            {table.current?.filters?.dir_id && (
-              <div className='flex gap-2'>
-                <ButtonModal
-                  resource='tools.fileDir'
-                  action='edit'
-                  variant='outline'
-                  theme='default'
-                  title={translate('tools.file.fields.editDir')}
-                  icon={<div className='i-tabler:edit' />}
-                  component={() => import('./group')}
-                  rowId={table.current?.filters.dir_id}
-                >
-                  <></>
-                </ButtonModal>
-                <DeleteButton
-                  resource='tools.fileDir'
-                  variant='outline'
-                  theme='default'
-                  icon={<div className='i-tabler:trash' />}
-                  rowId={table.current?.filters.dir_id}
-                >
-                  <></>
-                </DeleteButton>
-              </div>
-            )}
-          </>
-        )}
+        //     {table.current?.filters?.dir_id && (
+        //       <div className='flex gap-2'>
+        //         <ButtonModal
+        //           resource='tools.fileDir'
+        //           action='edit'
+        //           variant='outline'
+        //           theme='default'
+        //           title={translate('tools.file.fields.editDir')}
+        //           icon={<div className='i-tabler:edit' />}
+        //           component={() => import('./group')}
+        //           rowId={table.current?.filters.dir_id}
+        //         >
+        //           <></>
+        //         </ButtonModal>
+        //         <DeleteButton
+        //           resource='tools.fileDir'
+        //           variant='outline'
+        //           theme='default'
+        //           icon={<div className='i-tabler:trash' />}
+        //           rowId={table.current?.filters.dir_id}
+        //         >
+        //           <></>
+        //         </DeleteButton>
+        //       </div>
+        //     )}
+        //   </>
+        // )}
         actionRender={() => (
           <ButtonModal
             component={() => import('./upload')}
@@ -215,6 +216,58 @@ const List = () => {
         )}
       />
     </>
+  )
+}
+
+const SideTree = () => {
+  return (
+    <div className='w-60'>
+      <div className='border rounded p-4 bg-container border-component'>
+        <Button block>添加分类</Button>
+
+        <div className='mt-4'>
+          <Tree
+            data={[
+              {
+                children: [
+                  {
+                    label: '第二段',
+                  },
+                  {
+                    label: '第二段',
+                  },
+                ],
+                label: '第一段',
+              },
+              {
+                children: [
+                  {
+                    label: '第二段',
+                  },
+                  {
+                    label: '第二段',
+                  },
+                ],
+                label: '第一段',
+              },
+              {
+                children: [
+                  {
+                    label: '第二段',
+                  },
+                  {
+                    label: '第二段',
+                  },
+                ],
+                label: '第一段',
+              },
+            ]}
+            line
+            transition={false}
+          />
+        </div>
+      </div>
+    </div>
   )
 }
 
