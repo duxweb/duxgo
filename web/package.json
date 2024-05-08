@@ -5,31 +5,31 @@
     "dependencies": {
         "@duxweb/dux-extend": "^0.2.1",
         "@duxweb/dux-plugin": "^0.0.8",
-        "@duxweb/dux-refine": "file:.yalc/@duxweb/dux-refine"
+        "@duxweb/dux-refine": "^0.12.3"
     },
     "devDependencies": {
         "@faker-js/faker": "^8.0.2",
         "@types/node": "^20.8.9",
-        "@types/react": "^18.2.33",
-        "@types/react-dom": "^18.2.14",
+        "@types/react": "^18.3.1",
+        "@types/react-dom": "^18.3.0",
         "@typescript-eslint/eslint-plugin": "^6.9.0",
         "@typescript-eslint/parser": "^6.9.0",
-        "@unocss/eslint-config": "^0.57.1",
+        "@unocss/eslint-config": "^0.59.4",
         "@vitejs/plugin-react": "^4.2.1",
-        "eslint": "^8.52.0",
-        "eslint-config-prettier": "^9.0.0",
-        "eslint-plugin-mdx": "^2.2.0",
-        "eslint-plugin-prettier": "^5.0.1",
-        "eslint-plugin-react": "^7.33.2",
-        "eslint-plugin-react-hooks": "^4.6.0",
-        "eslint-plugin-react-refresh": "^0.4.3",
+        "eslint": "^8.38.0",
+        "eslint-config-prettier": "^9.1.0",
+        "eslint-plugin-mdx": "^2.1.0",
+        "eslint-plugin-prettier": "^5.1.3",
+        "eslint-plugin-react": "^7.34.1",
+        "eslint-plugin-react-hooks": "^4.6.2",
+        "eslint-plugin-react-refresh": "^0.4.6",
         "lowdb": "^6.1.1",
         "prettier": "^3.0.3",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "sass": "^1.69.5",
         "typescript": "^5.2.2",
-        "vite": "^5.1.4"
+        "vite": "^5.2.11"
     },
     "scripts": {
         "dev": "refine dev --host",

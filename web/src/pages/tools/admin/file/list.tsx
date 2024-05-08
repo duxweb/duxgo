@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useMemo, useRef } from 'react'
 import { useTranslate } from '@refinedev/core'
 import { PrimaryTableCol, Link, Select, Form, Button, Tree } from 'tdesign-react/esm'
 import {
@@ -220,52 +220,52 @@ const List = () => {
 }
 
 const SideTree = () => {
-  return (
-    <div className='w-60'>
-      <div className='border rounded p-4 bg-container border-component'>
-        <Button block>添加分类</Button>
+  const treeData = useMemo(() => {
+    return [
+      {
+        children: [
+          {
+            label: '第二段',
+          },
+          {
+            label: '第二段',
+          },
+        ],
+        label: '第一段',
+      },
+      {
+        children: [
+          {
+            label: '第二段',
+          },
+          {
+            label: '第二段',
+          },
+        ],
+        label: '第一段',
+      },
+      {
+        children: [
+          {
+            label: '第二段',
+          },
+          {
+            label: '第二段',
+          },
+        ],
+        label: '第一段',
+      },
+    ]
+  }, [])
 
-        <div className='mt-4'>
-          <Tree
-            data={[
-              {
-                children: [
-                  {
-                    label: '第二段',
-                  },
-                  {
-                    label: '第二段',
-                  },
-                ],
-                label: '第一段',
-              },
-              {
-                children: [
-                  {
-                    label: '第二段',
-                  },
-                  {
-                    label: '第二段',
-                  },
-                ],
-                label: '第一段',
-              },
-              {
-                children: [
-                  {
-                    label: '第二段',
-                  },
-                  {
-                    label: '第二段',
-                  },
-                ],
-                label: '第一段',
-              },
-            ]}
-            line
-            transition={false}
-          />
-        </div>
+  return (
+    <div className='w-full flex-none border-r pr-4 border-component lg:w-60'>
+      <Button block variant='outline' theme='primary'>
+        添加分类
+      </Button>
+
+      <div className='mt-4'>
+        <Tree data={treeData} line />
       </div>
     </div>
   )

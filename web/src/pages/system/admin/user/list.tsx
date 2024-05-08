@@ -29,7 +29,7 @@ const List = () => {
         cell: ({ row }) => {
           return (
             <MediaText size='small'>
-              <MediaText.Avatar image={row.avatar}>{row.nickname[0]}</MediaText.Avatar>
+              <MediaText.Avatar image={row.avatar}>{row.nickname}</MediaText.Avatar>
               <MediaText.Title>{row.nickname}</MediaText.Title>
             </MediaText>
           )
