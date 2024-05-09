@@ -5,7 +5,7 @@
     "dependencies": {
         "@duxweb/dux-extend": "^0.2.1",
         "@duxweb/dux-plugin": "^0.0.8",
-        "@duxweb/dux-refine": "^0.12.3"
+        "@duxweb/dux-refine": "file:.yalc/@duxweb/dux-refine"
     },
     "devDependencies": {
         "@faker-js/faker": "^8.0.2",
@@ -14,7 +14,7 @@
         "@types/react-dom": "^18.3.0",
         "@typescript-eslint/eslint-plugin": "^6.9.0",
         "@typescript-eslint/parser": "^6.9.0",
-        "@unocss/eslint-config": "^0.59.4",
+        "@unocss/eslint-config": "^0.60.0",
         "@vitejs/plugin-react": "^4.2.1",
         "eslint": "^8.38.0",
         "eslint-config-prettier": "^9.1.0",

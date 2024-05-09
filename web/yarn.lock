@@ -891,10 +891,8 @@
   resolved "https://registry.yarnpkg.com/@duxweb/dux-plugin/-/dux-plugin-0.0.8.tgz#6efa54ff7498bba2526656dfbcde13e0cc77bf0a"
   integrity sha512-tRHBLuLlIBx24zHezLUnIEE/R0NaKbWoYcHq/DiXjH+wHF8t2mcHaDLfpfhMtpKrXi0TFu1jutUpS82aQEy/8Q==
 
-"@duxweb/dux-refine@^0.12.3":
-  version "0.12.3"
-  resolved "https://registry.yarnpkg.com/@duxweb/dux-refine/-/dux-refine-0.12.3.tgz#1b6dc9c72409aaebfad181d96fad210d7f4747a0"
-  integrity sha512-hDOkeXUk68RtJcS1etH4PSBwTB6+i1DL17mKr+D/GtI9XsNqxfBmRnjER6kQ/9jXWKwcruIKIPJzQeRhXrEgPA==
+"@duxweb/dux-refine@file:.yalc/@duxweb/dux-refine":
+  version "0.12.5"
   dependencies:
     "@ebay/nice-modal-react" "^1.2.13"
     "@iconify-json/tabler" "^1.1.108"
@@ -2126,7 +2124,7 @@
     "@typescript-eslint/typescript-estree" "6.21.0"
     semver "^7.5.4"
 
-"@typescript-eslint/utils@^7.7.0":
+"@typescript-eslint/utils@^7.8.0":
   version "7.8.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/utils/-/utils-7.8.0.tgz#57a79f9c0c0740ead2f622e444cfaeeb9fd047cd"
   integrity sha512-L0yFqOCflVqXxiZyXrDr80lnahQfSOfc9ELAAZ75sqicqp2i36kEZZGuUymHNFoYOqxRT05up760b4iGsl02nQ==
@@ -2457,26 +2455,39 @@
     "@unocss/core" "0.59.4"
     unconfig "^0.3.13"
 
+"@unocss/config@0.60.0":
+  version "0.60.0"
+  resolved "https://registry.yarnpkg.com/@unocss/config/-/config-0.60.0.tgz#bedb81025781acd11417a4f18497210a0c7a792c"
+  integrity sha512-y8zTM/qhZ5p2zhtgjsqL4BDjDXes1i72kNts/A85adNTx9ffZG+0dbrH2DLoBKp6aAb51AOo5OcG5cllSbNrDQ==
+  dependencies:
+    "@unocss/core" "0.60.0"
+    unconfig "^0.3.13"
+
 "@unocss/core@0.59.4", "@unocss/core@^0.59.4":
   version "0.59.4"
   resolved "https://registry.yarnpkg.com/@unocss/core/-/core-0.59.4.tgz#0e35db9f439780e7739df695eea8377c99a6290c"
   integrity sha512-bBZ1sgcAtezQVZ1BST9IS3jqcsTLyqKNjiIf7FTnX3DHpfpYuMDFzSOtmkZDzBleOLO/CtcRWjT0HwTSQAmV0A==
 
-"@unocss/eslint-config@^0.59.4":
-  version "0.59.4"
-  resolved "https://registry.yarnpkg.com/@unocss/eslint-config/-/eslint-config-0.59.4.tgz#4e1878291b310456ea4ead1e6da676f324516921"
-  integrity sha512-a0FWOXQtdheYplZI+Oba2QMNWzCsfTUV/EuYEUDuKFARcsqpzO0PgRSH0MDHz0nROYmxeKkEKW/56dbAXmjBFQ==
-  dependencies:
-    "@unocss/eslint-plugin" "0.59.4"
+"@unocss/core@0.60.0":
+  version "0.60.0"
+  resolved "https://registry.yarnpkg.com/@unocss/core/-/core-0.60.0.tgz#9fb9c7383b2cea03fcae70ffec89c9adaae135a3"
+  integrity sha512-i1j5i/4xiCfogobaOdQCQUEy/Ch8mBtKgpfUIreJtElaF15uIjT2t/G0y7qUz87ZNl+wJoPcWkcSC92HVnjXwg==
 
-"@unocss/eslint-plugin@0.59.4":
-  version "0.59.4"
-  resolved "https://registry.yarnpkg.com/@unocss/eslint-plugin/-/eslint-plugin-0.59.4.tgz#9544772ab0ba0ac2bdb6dacbe90d0d3f0e7eb6ed"
-  integrity sha512-bWxr0ax0X8F97/JcQ8V34Zl4ZSPklMkYAExj+svfanng7i6ymBCmMDfSVcNjb7VJFP1ealNuEnJ9PJcV0N0aQQ==
+"@unocss/eslint-config@^0.60.0":
+  version "0.60.0"
+  resolved "https://registry.yarnpkg.com/@unocss/eslint-config/-/eslint-config-0.60.0.tgz#0025333f455e3185a6f7a7b62bac2499433bde6f"
+  integrity sha512-rjVOwJJxodplxxjHoCt8yU05lNHxTVj87WEYqHpHLKa/bw5kuV8+tWyDn0tgNYxOiq8l2NrlHDxBJy/v5ybMBQ==
   dependencies:
-    "@typescript-eslint/utils" "^7.7.0"
-    "@unocss/config" "0.59.4"
-    "@unocss/core" "0.59.4"
+    "@unocss/eslint-plugin" "0.60.0"
+
+"@unocss/eslint-plugin@0.60.0":
+  version "0.60.0"
+  resolved "https://registry.yarnpkg.com/@unocss/eslint-plugin/-/eslint-plugin-0.60.0.tgz#a421fff34cd93dc1853cd49a5c9863f4519cf768"
+  integrity sha512-sKoj/6ADnA+UimiXzCtkezwvn5krka1o3q91wc9uNFHt33BYAEnyhMD4Qp26wJizPSlJHn+QYVPRtqHUom8twQ==
+  dependencies:
+    "@typescript-eslint/utils" "^7.8.0"
+    "@unocss/config" "0.60.0"
+    "@unocss/core" "0.60.0"
     magic-string "^0.30.10"
     synckit "^0.9.0"
 

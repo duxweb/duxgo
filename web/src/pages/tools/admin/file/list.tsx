@@ -1,6 +1,19 @@
-import React, { useMemo, useRef } from 'react'
-import { useTranslate } from '@refinedev/core'
-import { PrimaryTableCol, Link, Select, Form, Button, Tree } from 'tdesign-react/esm'
+import React, { useMemo, useRef, useState } from 'react'
+import { useTranslate, useList } from '@refinedev/core'
+import {
+  PrimaryTableCol,
+  Link,
+  Select,
+  Form,
+  Button,
+  Tree,
+  List as TdList,
+  Space,
+  Menu,
+  Divider,
+  Dropdown,
+  MenuValue,
+} from 'tdesign-react/esm'
 import {
   PageTable,
   useSelect,
@@ -8,7 +21,10 @@ import {
   ButtonModal,
   DeleteButton,
   DeleteLink,
+  EmptyWidget,
+  CardSider,
 } from '@duxweb/dux-refine'
+import clsx from 'clsx'
 
 interface FileIconProps {
   mime: string
@@ -73,11 +89,6 @@ const FileIcon = ({ mime }: FileIconProps) => {
 const List = () => {
   const translate = useTranslate()
   const table = useRef<TableRef>(null)
-  const { options, onSearch, queryResult } = useSelect({
-    resource: 'tools.fileDir',
-    optionLabel: 'name',
-    optionValue: 'id',
-  })
 
   const columns = React.useMemo<PrimaryTableCol[]>(
     () => [
@@ -220,55 +231,114 @@ const List = () => {
 }
 
 const SideTree = () => {
-  const treeData = useMemo(() => {
-    return [
-      {
-        children: [
-          {
-            label: '第二段',
-          },
-          {
-            label: '第二段',
-          },
-        ],
-        label: '第一段',
-      },
-      {
-        children: [
-          {
-            label: '第二段',
-          },
-          {
-            label: '第二段',
-          },
-        ],
-        label: '第一段',
-      },
-      {
-        children: [
-          {
-            label: '第二段',
-          },
-          {
-            label: '第二段',
-          },
-        ],
-        label: '第一段',
-      },
-    ]
-  }, [])
+  const translate = useTranslate()
+
+  const { data, isLoading } = useList({
+    resource: 'tools.fileDir',
+  })
+
+  const [value, setValue] = useState<MenuValue>()
 
   return (
-    <div className='w-full flex-none border-r pr-4 border-component lg:w-60'>
-      <Button block variant='outline' theme='primary'>
-        添加分类
-      </Button>
-
-      <div className='mt-4'>
-        <Tree data={treeData} line />
-      </div>
-    </div>
+    <CardSider
+      title='附件分类'
+      tools={
+        <>
+          <ButtonModal
+            resource='tools.fileDir'
+            action='create'
+            variant='text'
+            shape='circle'
+            theme='default'
+            title={translate('tools.file.fields.addDir')}
+            icon={<div className='i-tabler:plus' />}
+            component={() => import('./group')}
+          >
+            <></>
+          </ButtonModal>
+          <Button
+            action='create'
+            variant='text'
+            shape='circle'
+            theme='default'
+            icon={<div className='i-tabler:refresh' />}
+            onClick={() => setValue(() => undefined)}
+          />
+          {value && (
+            <Dropdown
+              direction='right'
+              hideAfterItemClick
+              options={[
+                {
+                  content: '操作一',
+                  value: 1,
+                },
+                {
+                  content: '操作二',
+                  value: 2,
+                },
+              ]}
+              placement='bottom-left'
+              trigger='hover'
+            >
+              <Button
+                action='create'
+                variant='text'
+                shape='circle'
+                theme='default'
+                icon={<div className='i-tabler:dots-vertical' />}
+              />
+            </Dropdown>
+          )}
+        </>
+      }
+    >
+      <Menu
+        expandType='normal'
+        theme='light'
+        width={'100%'}
+        className='app-sider-menu bg-transparent'
+        value={value}
+        onChange={(v) => {
+          setValue(() => v)
+        }}
+      >
+        <SideTreeChilren data={data?.data} optionLabel='name' optionValue='id' />
+      </Menu>
+    </CardSider>
   )
+}
+
+interface SideTreeChilrenProps {
+  data?: Record<string, any>[]
+  optionLabel?: string
+  optionValue?: string
+  optionChildren?: string
+}
+
+const SideTreeChilren = ({
+  data,
+  optionLabel = 'label',
+  optionValue = 'value',
+  optionChildren = 'children',
+}: SideTreeChilrenProps) => {
+  return data?.map((item, k) => {
+    if (item['optionChildren'] && item['optionChildren'].length > 0) {
+      return (
+        <Menu.SubMenu key={k} title={item[optionLabel]} value={item[optionValue]}>
+          {SideTreeChilren({
+            data: item[optionChildren] as Record<string, any>[],
+          })}
+        </Menu.SubMenu>
+      )
+    } else {
+      return (
+        <Menu.MenuItem key={k} value={item[optionValue]}>
+          {item[optionLabel]}
+        </Menu.MenuItem>
+      )
+    }
+  })
 }
 
 export default List
