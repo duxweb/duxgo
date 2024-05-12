@@ -1,5 +1,5 @@
 import React, { useMemo, useRef, useState } from 'react'
-import { useTranslate, useList } from '@refinedev/core'
+import { useTranslate, useList, useDeleteMany } from '@refinedev/core'
 import {
   PrimaryTableCol,
   Link,
@@ -13,6 +13,7 @@ import {
   Divider,
   Dropdown,
   MenuValue,
+  DialogPlugin,
 } from 'tdesign-react/esm'
 import {
   PageTable,
@@ -22,7 +23,7 @@ import {
   DeleteButton,
   DeleteLink,
   EmptyWidget,
-  CardSider,
+  CardSider, Modal,
 } from '@duxweb/dux-refine'
 import clsx from 'clsx'
 
@@ -237,6 +238,9 @@ const SideTree = () => {
     resource: 'tools.fileDir',
   })
 
+
+  const { mutate } = useDeleteMany()
+
   const [value, setValue] = useState<MenuValue>()
 
   return (
@@ -262,22 +266,12 @@ const SideTree = () => {
             shape='circle'
             theme='default'
             icon={<div className='i-tabler:refresh' />}
-            onClick={() => setValue(() => undefined)}
+            onClick={() => setValue('0')}
           />
-          {value && (
+          {value && value != '0' && (
             <Dropdown
               direction='right'
               hideAfterItemClick
-              options={[
-                {
-                  content: '操作一',
-                  value: 1,
-                },
-                {
-                  content: '操作二',
-                  value: 2,
-                },
-              ]}
               placement='bottom-left'
               trigger='hover'
             >
@@ -288,23 +282,54 @@ const SideTree = () => {
                 theme='default'
                 icon={<div className='i-tabler:dots-vertical' />}
               />
+              <Dropdown.DropdownMenu>
+                <Dropdown.DropdownItem value={1} prefixIcon={<div className='i-tabler:edit'></div>} onClick={() => {
+                  Modal.open({
+                    title: '修改目录',
+                    component: () => import('./group'),
+                    componentProps: {
+                      id: value
+                    }
+                  })
+                }}>编辑</Dropdown.DropdownItem>
+                <Dropdown.DropdownItem value={2} prefixIcon={<div className='i-tabler:x'></div>} onClick={() => {
+                  const confirmDia = DialogPlugin.confirm({
+                    className: 'app-modal',
+                    header: '确认删除',
+                    width: 350,
+                    body: <div className='p-4'>确认执行该操作？</div>,
+                    onClose: ({ e, trigger }) => {
+                      console.log('e: ', e);
+                      console.log('trigger: ', trigger);
+                      confirmDia.hide();
+                    },
+                    onConfirm: () => {
+                      mutate({
+                        resource: 'tools.fileDir',
+                        ids: [value],
+                      })
+                      confirmDia.hide();
+                    }
+                  })
+                }}>删除</Dropdown.DropdownItem>
+              </Dropdown.DropdownMenu>
             </Dropdown>
           )}
         </>
       }
     >
-      <Menu
+      {data?.data && data?.data.length > 0 ? <Menu
         expandType='normal'
         theme='light'
         width={'100%'}
         className='app-sider-menu bg-transparent'
         value={value}
         onChange={(v) => {
-          setValue(() => v)
+          setValue(v)
         }}
       >
         <SideTreeChilren data={data?.data} optionLabel='name' optionValue='id' />
-      </Menu>
+      </Menu> : <div className='text-sm mt-4'><EmptyWidget type='simple' /></div>}
     </CardSider>
   )
 }
