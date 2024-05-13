@@ -30,26 +30,6 @@ func Init(t *app.Dux) {
 func Register(t *app.Dux) {
 	fmt.Println("xxx", "xxx")
 	menus := menu.Get("admin")
-
-	groups := models.GetMagicMenu()
-
-	fmt.Println("groups", groups)
-
-	a := menus.Add(&menu.MenuData{
-		Name:  "data",
-		Label: "data",
-		Icon:  "i-tabler:database",
-		Meta: map[string]any{
-			"sort": 100,
-		},
-	})
-	for _, group := range groups {
-		groupName := "tools.data." + group["name"].(string)
-		g := a.Group(groupName, group["label"].(string), group["icon"].(string))
-		for _, item := range group["children"].([]map[string]any) {
-			name := item["name"].(string)
-			g.Item(groupName+"."+name, item["label"].(string), "data/"+name, 0)
-		}
-	}
+	models.GetMagicMenu(menus)
 
 }

@@ -7,6 +7,8 @@ import (
 	"github.com/labstack/echo/v4"
 	"github.com/samber/lo"
 	"github.com/tidwall/gjson"
+	"io/fs"
+	"log"
 	"net"
 	"time"
 )
@@ -21,11 +23,26 @@ func Location(ctx echo.Context) error {
 // Index @Route(method = "GET", name = "manage.index", route = "/")
 func Index(ctx echo.Context) error {
 
-	file, err := global.StaticFs.ReadFile("web/.vite/manifest.json")
+	err := fs.WalkDir(global.StaticFs, ".", func(path string, d fs.DirEntry, err error) error {
+		if err != nil {
+			return err
+		}
+		if d.IsDir() {
+			// 处理目录
+			log.Println("dir:", path)
+		} else {
+			// 处理文件
+			log.Println("file:", path)
+		}
+		return nil
+	})
+
+	file, err := global.StaticFs.ReadFile("static/web/.vite/manifest.json")
 	isManifest := true
 	if err != nil {
 		isManifest = false
 	}
+	fmt.Println("file", isManifest)
 
 	json := gjson.ParseBytes(file)
 

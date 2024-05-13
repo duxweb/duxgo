@@ -27,7 +27,7 @@ export default defineConfig({
   },
   build: {
     cssCodeSplit: false,
-    outDir: '../public/web/',
+    outDir: '../static/web/',
     manifest: true,
     rollupOptions: {
       input: {

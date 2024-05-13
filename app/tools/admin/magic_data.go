@@ -5,10 +5,13 @@ import (
 	"dux-project/app/tools/services"
 	"encoding/json"
 	"github.com/duxweb/go-fast/action"
+	"github.com/duxweb/go-fast/cache"
 	"github.com/duxweb/go-fast/database"
 	"github.com/duxweb/go-fast/validator"
 	"github.com/gookit/goutil/jsonutil"
 	"github.com/labstack/echo/v4"
+	"github.com/samber/lo"
+	"github.com/spf13/cast"
 	"github.com/tidwall/gjson"
 	"gorm.io/datatypes"
 	"gorm.io/gorm"
@@ -79,6 +82,7 @@ func MagicDataRes() action.Result {
 		data := map[string]any{}
 		_ = json.Unmarshal(item.Data, &data)
 		data["id"] = item.ID
+		data["parent_id"] = lo.Ternary[any](item.ParentID == 0, nil, item.ParentID)
 
 		var results []map[string]any
 		for i, vo := range item.Children {
@@ -100,9 +104,15 @@ func MagicDataRes() action.Result {
 		info := e.Get("info").(*model.ToolsMagic)
 
 		tx.MagicID = info.ID
-		tx.ParentID = uint(data.Get("parent_id").Uint())
+		tx.ParentID = cast.ToUint(data.Get("parent_id").Uint())
 		tx.Data = datatypes.JSON(jsonutil.MustString(data.Value()))
 
+		return nil
+	})
+
+	res.SaveBefore(func(data *model.ToolsMagicData, params *gjson.Result) error {
+		key := []byte("magic.menus")
+		cache.Injector().Del(key)
 		return nil
 	})
 

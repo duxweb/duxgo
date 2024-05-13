@@ -1,11 +1,12 @@
 package models
 
 import (
-	"encoding/json"
-	"github.com/duxweb/go-fast/cache"
 	"github.com/duxweb/go-fast/database"
+	"github.com/duxweb/go-fast/menu"
+	coreModel "github.com/duxweb/go-fast/models"
 	"github.com/golang-module/carbon/v2"
 	"gorm.io/datatypes"
+	"gorm.io/gorm/clause"
 )
 
 // ToolsMagic @AutoMigrate()
@@ -37,38 +38,50 @@ type ToolsMagicFields struct {
 	Child    []ToolsMagicFields `json:"child"`
 }
 
-func GetMagicMenu() []map[string]any {
-	key := []byte("magic.menus")
-	data, err := cache.Injector().Get(key)
-	groupData := []map[string]any{}
-	if err == nil {
-		_ = json.Unmarshal(data, &groupData)
-		return groupData
-	}
-	groups := []ToolsMagicGroup{}
-	database.Gorm().Model(ToolsMagicGroup{}).Find(&groups)
+func GetMagicMenu(appMenu *menu.MenuData) {
+	//key := []byte("magic.menus")
+	//data, err := cache.Injector().Get(key)
+	apps := []ToolsMagicGroup{}
+	database.Gorm().Model(ToolsMagicGroup{}).Preload(clause.Associations, coreModel.ChildrenPreload).Where("parent_id = 0").Find(&apps)
 
-	for _, group := range groups {
-		magics := []ToolsMagic{}
-		database.Gorm().Model(ToolsMagic{}).Where("group_id = ?", group.ID).Where("inline = ?", false).Find(&magics)
+	for i, app := range apps {
 
-		items := []map[string]any{}
-		for _, magic := range magics {
-			items = append(items, map[string]any{
-				"name":  magic.Name,
-				"label": magic.Label,
-			})
-		}
-		groupData = append(groupData, map[string]any{
-			"name":     group.Name,
-			"label":    group.Label,
-			"icon":     group.Icon,
-			"children": items,
+		t := appMenu.Add(&menu.MenuData{
+			Name:  "tools.data." + app.Name,
+			Label: app.Label,
+			Icon:  app.Icon,
+			Meta: map[string]any{
+				"sort": 500 + i,
+			},
 		})
+
+		// 一级数据
+		appMagics := []ToolsMagic{}
+		database.Gorm().Model(ToolsMagic{}).Where("group_id = ?", app.ID).Where("inline = ?", false).Find(&appMagics)
+		if len(appMagics) > 0 {
+			for _, magic := range appMagics {
+				t.Item("tools.data."+magic.Name, magic.Label, "data/"+magic.Name, 0)
+			}
+		}
+
+		// 一级分组
+		if len(app.Children) > 0 {
+			for _, topGroup := range app.Children {
+
+				// 二级分组
+				g := t.Group(topGroup.Name, topGroup.Label, topGroup.Icon)
+
+				// 二级数据
+				topMagics := []ToolsMagic{}
+				database.Gorm().Model(ToolsMagic{}).Where("group_id = ?", topGroup.ID).Where("inline = ?", false).Find(&topMagics)
+				if len(topMagics) > 0 {
+					for _, magic := range topMagics {
+						g.Item("tools.data."+magic.Name, magic.Label, "data/"+magic.Name, 0)
+					}
+				}
+			}
+		}
 	}
 
-	marshal, _ := json.Marshal(groupData)
-	_ = cache.Injector().Set(key, marshal, 0)
-
-	return groupData
+	//_ = cache.Injector().Set(key, []byte("true"), 0)
 }

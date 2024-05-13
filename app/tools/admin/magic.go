@@ -84,8 +84,8 @@ func MagicRes() action.Result {
 		model.TreeLabel = data.Get("tree_label").String()
 		model.Page = &page
 		model.Inline = &inline
-		model.External = datatypes.JSON(data.Get("external").Raw)
-		model.Fields = datatypes.JSON(data.Get("fields").Raw)
+		model.External = datatypes.JSON(data.Get("external").String())
+		model.Fields = datatypes.JSON(data.Get("fields").String())
 
 		return nil
 	})

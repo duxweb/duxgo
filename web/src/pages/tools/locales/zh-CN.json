@@ -19,6 +19,7 @@
       "name": "模型管理",
       "fields": {
         "group": "数据分组",
+        "parent": "上级",
         "unknown": "未知",
         "name": "数据名称",
         "nameDesc": "数据调用名",
