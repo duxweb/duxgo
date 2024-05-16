@@ -3,7 +3,6 @@ package tools
 import (
 	"dux-project/app/tools/models"
 	"embed"
-	"fmt"
 	"github.com/duxweb/go-fast/app"
 	"github.com/duxweb/go-fast/menu"
 )
@@ -28,8 +27,6 @@ func Init(t *app.Dux) {
 }
 
 func Register(t *app.Dux) {
-	fmt.Println("xxx", "xxx")
 	menus := menu.Get("admin")
 	models.GetMagicMenu(menus)
-
 }

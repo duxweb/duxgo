@@ -3,5 +3,6 @@
 data
 tmp
 uploads
+builds
 static/web
 routes.json

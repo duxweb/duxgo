@@ -899,10 +899,10 @@
   resolved "https://registry.yarnpkg.com/@duxweb/dux-plugin/-/dux-plugin-0.0.8.tgz#6efa54ff7498bba2526656dfbcde13e0cc77bf0a"
   integrity sha512-tRHBLuLlIBx24zHezLUnIEE/R0NaKbWoYcHq/DiXjH+wHF8t2mcHaDLfpfhMtpKrXi0TFu1jutUpS82aQEy/8Q==
 
-"@duxweb/dux-refine@^0.12.9":
-  version "0.12.9"
-  resolved "https://registry.yarnpkg.com/@duxweb/dux-refine/-/dux-refine-0.12.9.tgz#2be05e10c95da41342aa6def6b285c0b6d142041"
-  integrity sha512-ldpKYzwAV7T91tQXumMQaNX6SGkDJo7pfFCDT3aLGfVuX0TaULLR4G4+4SHMHXMEg/GTZRmMJeh3Zdsf1mCaYQ==
+"@duxweb/dux-refine@^0.13.3":
+  version "0.13.3"
+  resolved "https://registry.yarnpkg.com/@duxweb/dux-refine/-/dux-refine-0.13.3.tgz#da6f1bc3356aaa7ac0faca972572f148404ee5c1"
+  integrity sha512-iRX/Wx9goJfMCO/5ER6K0CTgdfhJtsCJfNDGxHhdmoQT3U+DjSe0RbjuzWzrtS5/+wu84Yc2TXm+SgIM39ZrHA==
   dependencies:
     "@ebay/nice-modal-react" "^1.2.13"
     "@iconify-json/tabler" "^1.1.108"
@@ -1994,7 +1994,7 @@
     "@types/scheduler" "*"
     csstype "^3.0.2"
 
-"@types/react@^18.3.2":
+"@types/react@^18.2.0":
   version "18.3.2"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-18.3.2.tgz#462ae4904973bc212fa910424d901e3d137dbfcd"
   integrity sha512-Btgg89dAnqD4vV7R3hlwOxgqobUQKgx3MmrQRi0yYbs/P0ym8XozIAlkqVilPqHQwXs4e9Tf63rrCgl58BcO4w==
@@ -8435,7 +8435,7 @@ react-base16-styling@^0.6.0:
     lodash.flow "^3.3.0"
     pure-color "^1.2.0"
 
-react-dom@^18.0.0, react-dom@^18.3.1:
+react-dom@^18.0.0:
   version "18.3.1"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-18.3.1.tgz#c2265d79511b57d479b3dd3fdfa51536494c5cb4"
   integrity sha512-5m4nQKp+rZRb09LNH59GM4BxTh9251/ylbKIbpe7TpGxfJ+9kv6BLkLBXIjjspbgbnIBNqlI23tRnTWT0snUIw==
@@ -8557,7 +8557,7 @@ react-virtual@^2.8.2:
   dependencies:
     "@reach/observe-rect" "^1.1.0"
 
-react@^18.0.0, react@^18.3.1:
+react@^18.0.0:
   version "18.3.1"
   resolved "https://registry.yarnpkg.com/react/-/react-18.3.1.tgz#49ab892009c53933625bd16b2533fc754cab2891"
   integrity sha512-wS+hAgJShR0KhEvPJArfuPVN1+Hz1t0Y6n5jLrGQbkb4urgPE/0Rve+1kMB1v/oWgHgm4WIcV+i7F2pTVj+2iQ==

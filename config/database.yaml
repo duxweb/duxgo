@@ -1,7 +1,7 @@
 db:
   drivers:
     default:
-      file: "./app.db"
+      file: "./database/app.db"
       type: sqlite
       maxIdleConns: 10
       maxOpenConns: 100

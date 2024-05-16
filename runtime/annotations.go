@@ -119,6 +119,55 @@ var Annotations = []*annotation.File{
 		Name: "dux-project/app/system/admin",
 		Annotations: []*annotation.Annotation{
 			{
+				Name: "RouteGroup",
+				Params: map[string]any{
+					"app":   "admin",
+					"name":  "system.total",
+					"route": "/system/total",
+				},
+			},
+			{
+				Name: "Route",
+				Params: map[string]any{
+					"method": "GET",
+					"name":   "total",
+					"route":  "",
+				},
+				Func: appSystemAdmin.Total,
+			},
+			{
+				Name: "Route",
+				Params: map[string]any{
+					"method": "GET",
+					"name":   "hardware",
+					"route":  "/hardware",
+				},
+				Func: appSystemAdmin.Hardware,
+			},
+			{
+				Name: "Route",
+				Params: map[string]any{
+					"method": "GET",
+					"name":   "speed",
+					"route":  "/speed",
+				},
+				Func: appSystemAdmin.Speed,
+			},
+			{
+				Name: "Route",
+				Params: map[string]any{
+					"method": "POST",
+					"name":   "speed",
+					"route":  "/speed",
+				},
+				Func: appSystemAdmin.SpeedSubmit,
+			},
+		},
+	},
+	{
+		Name: "dux-project/app/system/admin",
+		Annotations: []*annotation.Annotation{
+			{
 				Name: "Resource",
 				Params: map[string]any{
 					"app":   "admin",

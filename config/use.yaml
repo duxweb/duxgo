@@ -3,7 +3,7 @@ app:
     lang: zh-CN
     debug: true
     secret: a9dfda61e965d5101dfbf31e959fe096
-    domain: 'http://duxcms.test'
+    domain: 'http://localhost'
 server:
     port: 8900
     timeout: 30

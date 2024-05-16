@@ -3,7 +3,6 @@ package services
 import (
 	model "dux-project/app/tools/models"
 	"encoding/json"
-	"fmt"
 	"github.com/duxweb/go-fast/database"
 	"github.com/duxweb/go-fast/logger"
 	"github.com/go-resty/resty/v2"
@@ -215,18 +214,14 @@ func GetSourceData(id string, ids []string, c echo.Context) ([]map[string]any, e
 		return nil, err
 	}
 
-	fmt.Println("info", info)
-
 	data := []map[string]any{}
 
 	if info.Type == 0 {
-		fmt.Println("SourceData0")
 		_ = json.Unmarshal(info.Data, &data)
 
 	}
 
 	if info.Type == 1 {
-		fmt.Println("SourceData1", info.Url)
 		client := resty.New()
 		defer client.Clone()
 		get, err := client.

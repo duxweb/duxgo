@@ -5,12 +5,12 @@
     "dependencies": {
         "@duxweb/dux-extend": "^0.2.1",
         "@duxweb/dux-plugin": "^0.0.8",
-        "@duxweb/dux-refine": "^0.12.9"
+        "@duxweb/dux-refine": "^0.13.3"
     },
     "devDependencies": {
         "@faker-js/faker": "^8.0.2",
         "@types/node": "^20.12.11",
-        "@types/react": "^18.3.2",
+        "@types/react": "^18.2.0",
         "@types/react-dom": "^18.3.0",
         "@typescript-eslint/eslint-plugin": "^7.8.0",
         "@typescript-eslint/parser": "^7.8.0",
@@ -25,15 +25,15 @@
         "eslint-plugin-react-refresh": "^0.4.7",
         "lowdb": "^7.0.1",
         "prettier": "^3.2.5",
-        "react": "^18.3.1",
-        "react-dom": "^18.3.1",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
         "sass": "^1.77.1",
         "typescript": "^5.4.5",
         "vite": "^5.2.11"
     },
     "scripts": {
         "dev": "refine dev --host",
-        "build": "rm -rf ../public/web/ && tsc && refine build",
+        "build": "rm -rf ../static/web/ && tsc && refine build",
         "preview": "refine start",
         "refine": "refine"
     }

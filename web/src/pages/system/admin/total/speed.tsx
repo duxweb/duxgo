@@ -8,6 +8,7 @@ const Page = (props: Record<string, any>) => {
   const { request } = useClient()
   const { onClose } = useModal()
 
+  const [url, setUrl] = useState<string>(window.location.hostname)
   const [data, setData] = useState<any[]>([])
   const [loading, setLoading] = useState<boolean>(true)
   const [value, setValue] = useState<any[]>([])
@@ -33,7 +34,7 @@ const Page = (props: Record<string, any>) => {
         <div>
           <div className='mb-2'>{t('system.total.speed.domain')}</div>
           <div>
-            <Input disabled value={window.location.hostname} />
+            <Input value={url} onChange={(v) => setUrl(v)} />
           </div>
         </div>
         <div>
@@ -76,7 +77,7 @@ const Page = (props: Record<string, any>) => {
           loading={loading}
           onClick={() => {
             onClose?.()
-            props?.onSpeedTest?.(value, token)
+            props?.onSpeedTest?.(value, url, token)
           }}
         >
           {t('buttons.submit')}

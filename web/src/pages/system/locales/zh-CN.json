@@ -18,23 +18,21 @@
       "name": "运行状态",
       "general": {
         "title": "系统概况",
-        "cpuLoad": "CPU 负载",
-        "cpuUse": "CPU 占用",
-        "memUse": "内存占用",
-        "diskUse": "硬盘占用"
+        "cpu": "CPU 占用",
+        "mem": "内存占用",
+        "thread": "线程量",
+        "goroutine": "协程量"
       },
       "env": {
         "title": "环境信息",
-        "php": "PHP 版本",
-        "mysql": "Mysql 版本",
-        "redis": "Redis 版本",
+        "go": "GO 版本",
+        "os": "系统版本",
+        "boot": "运行时间 (分)",
         "time": "服务器时间",
-        "gdExt": "gd 扩展",
-        "imagickExt": "imagick 扩展",
-        "redisExt": "redis 扩展",
-        "zipExt": "zip 扩展",
-        "on": "支持",
-        "off": "不支持"
+        "event": "注册事件",
+        "schedule": "计划任务",
+        "queue": "队列数量",
+        "log_size": "日志大小"
       },
       "speed": {
         "title": "站点测速",

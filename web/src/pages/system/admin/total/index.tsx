@@ -120,7 +120,7 @@ const Index = () => {
       .filter((v) => !!v) || []) as Record<string, any>[]
   }, [speedData])
 
-  const onSpeedTest = (net: string[], token: string) => {
+  const onSpeedTest = (net: string[], url: string, token: string) => {
     setLoading(true)
     mutate(
       {
@@ -129,6 +129,7 @@ const Index = () => {
         values: {
           net: net,
           token: token,
+          url: url,
         },
       },
       {
@@ -155,27 +156,25 @@ const Index = () => {
           <div className='grid grid-cols-1 gap-4 2xl:grid-cols-4 md:grid-cols-2'>
             <CardStats
               isLoading={hardwareLoading}
-              title={translate('system.total.general.cpuLoad')}
-              value={Number(hardware?.load?.toFixed(2))}
-              unit='%'
-            />
-            <CardStats
-              isLoading={hardwareLoading}
-              title={translate('system.total.general.cpuUse')}
+              title={translate('system.total.general.cpu')}
               value={Number(hardware?.cpu)}
               unit='%'
             />
             <CardStats
               isLoading={hardwareLoading}
-              title={translate('system.total.general.memUse')}
+              title={translate('system.total.general.mem')}
               value={Number(hardware?.mem)}
               unit='%'
             />
             <CardStats
               isLoading={hardwareLoading}
-              title={translate('system.total.general.diskUse')}
-              value={hardware?.disk || 0}
-              unit='%'
+              title={translate('system.total.general.thread')}
+              value={Number(hardware?.thread)}
+            />
+            <CardStats
+              isLoading={hardwareLoading}
+              title={translate('system.total.general.goroutine')}
+              value={hardware?.goroutine || 0}
             />
           </div>
         </Card>
@@ -183,35 +182,35 @@ const Index = () => {
         <Card title={translate('system.total.env.title')} headerBordered>
           <div className='row-4 grid grid-cols-1 w-full gap-4 gap-4 2xl:grid-cols-4 md:grid-cols-2'>
             <CardEnv
-              title={translate('system.total.env.php')}
-              value={info?.sys?.php || '-'}
+              title={translate('system.total.env.go')}
+              value={info?.go || '-'}
               icon={
                 <div className='size-12 flex flex-none items-center justify-center rounded-full bg-brand-2 p-3 text-brand'>
-                  <div className='i-tabler:brand-php size-8'></div>
+                  <div className='i-tabler:brand-golang size-8'></div>
                 </div>
               }
             />
             <CardEnv
-              title={translate('system.total.env.mysql')}
-              value={info?.sys?.mysql || '-'}
+              title={translate('system.total.env.os')}
+              value={info?.os || '-'}
               icon={
                 <div className='size-12 flex flex-none items-center justify-center rounded-full bg-success-2 p-3 text-success'>
-                  <div className='i-tabler:brand-mysql size-8'></div>
+                  <div className='i-tabler:server size-8'></div>
                 </div>
               }
             />
             <CardEnv
-              title={translate('system.total.env.redis')}
-              value={info?.sys?.redis || '-'}
+              title={translate('system.total.env.boot')}
+              value={info?.boot_time || '-'}
               icon={
                 <div className='size-12 flex flex-none items-center justify-center rounded-full bg-error-2 p-3 text-error'>
-                  <div className='i-tabler:database size-8'></div>
+                  <div className='i-tabler:bolt size-8'></div>
                 </div>
               }
             />
             <CardEnv
               title={translate('system.total.env.time')}
-              value={'UTC ' + info?.sys?.time}
+              value={'UTC ' + info?.time}
               icon={
                 <div className='size-12 flex flex-none items-center justify-center rounded-full bg-warning-2 p-3 text-warning'>
                   <div className='i-tabler:calendar-time size-8'></div>
@@ -219,54 +218,38 @@ const Index = () => {
               }
             />
             <CardEnv
-              title={translate('system.total.env.gdExt')}
-              value={
-                info?.extend?.gd
-                  ? translate('system.total.env.on')
-                  : translate('system.total.env.off')
-              }
+              title={translate('system.total.env.log_size')}
+              value={info?.log_size}
               icon={
                 <div className='size-12 flex flex-none items-center justify-center rounded-full bg-pink-1 p-3 text-pink-6 dark:bg-pink-9/50 dark:text-pink-7'>
-                  <div className='i-tabler:photo size-8'></div>
+                  <div className='i-tabler:logs size-8'></div>
                 </div>
               }
             />
             <CardEnv
-              title={translate('system.total.env.imagickExt')}
-              value={
-                info?.syextends?.imagick
-                  ? translate('system.total.env.on')
-                  : translate('system.total.env.off')
-              }
+              title={translate('system.total.env.event')}
+              value={info?.event}
               icon={
                 <div className='size-12 flex flex-none items-center justify-center rounded-full bg-purple-1 p-3 p-3 text-purple-6 dark:bg-purple-9/50 dark:text-purple-7'>
-                  <div className='i-tabler:photo size-8'></div>
+                  <div className='i-tabler:christmas-tree size-8'></div>
                 </div>
               }
             />
             <CardEnv
-              title={translate('system.total.env.redisExt')}
-              value={
-                info?.syextends?.redis
-                  ? translate('system.total.env.on')
-                  : translate('system.total.env.off')
-              }
+              title={translate('system.total.env.schedule')}
+              value={info?.schedule}
               icon={
                 <div className='size-12 flex flex-none items-center justify-center rounded-full bg-teal-1 p-3 p-3 text-teal-6 dark:bg-teal-9/50 dark:text-teal-7'>
-                  <div className='i-tabler:database size-8'></div>
+                  <div className='i-tabler:calendar-event size-8'></div>
                 </div>
               }
             />
             <CardEnv
-              title={translate('system.total.env.zipExt')}
-              value={
-                info?.syextends?.zip
-                  ? translate('system.total.env.on')
-                  : translate('system.total.env.off')
-              }
+              title={translate('system.total.env.queue')}
+              value={info?.queue}
               icon={
                 <div className='size-12 flex flex-none items-center justify-center rounded-full bg-yellow-2 p-3 p-3 text-yellow-6 dark:bg-yellow-9/50 dark:text-yellow-7'>
-                  <div className='i-tabler:zip size-8'></div>
+                  <div className='i-tabler:manual-gearbox size-8'></div>
                 </div>
               }
             />

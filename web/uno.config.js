@@ -16,6 +16,7 @@ export default defineConfig({
     presetTypography(),
     presetDux(),
     presetIcons({
+      prefix: 'i-',
       collections: {
         tabler: () => import('@iconify-json/tabler/icons.json').then((i) => i.default),
       },
