@@ -1,6 +1,7 @@
 package admin
 
 import (
+	"context"
 	model "dux-project/app/tools/models"
 	"github.com/duxweb/go-fast/action"
 	"github.com/duxweb/go-fast/cache"
@@ -56,7 +57,7 @@ func MagicGroupRes() action.Result {
 		return nil
 	})
 
-	res.SaveBefore(func(data *model.ToolsMagicGroup, params *gjson.Result) error {
+	res.SaveBefore(func(ctx context.Context, data *model.ToolsMagicGroup, params *gjson.Result) error {
 		key := []byte("magic.menus")
 		cache.Injector().Del(key)
 		return nil

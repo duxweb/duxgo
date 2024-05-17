@@ -1,10 +1,12 @@
 package admin
 
 import (
+	"context"
 	model "dux-project/app/system/models"
 	"github.com/duxweb/go-fast/action"
 	"github.com/duxweb/go-fast/database"
 	"github.com/duxweb/go-fast/helper"
+	"github.com/duxweb/go-fast/response"
 	"github.com/duxweb/go-fast/validator"
 	"github.com/labstack/echo/v4"
 	"github.com/samber/lo"
@@ -55,8 +57,8 @@ func UserRes() action.Result {
 
 	res.Validator(func(data *gjson.Result, e echo.Context) (validator.ValidatorRule, error) {
 		return validator.ValidatorRule{
-			"username": {Rule: "required", Message: "请填写用户名"},
-			"nickname": {Rule: "required", Message: "请填写昵称"},
+			"username": {Rule: "required", LangMessage: "system.user.validator.username"},
+			"nickname": {Rule: "required", LangMessage: "system.user.validator.nickname"},
 		}, nil
 	})
 
@@ -74,14 +76,21 @@ func UserRes() action.Result {
 		return nil
 	})
 
-	res.SaveBefore(func(data *model.SystemUser, params *gjson.Result) error {
+	res.CreateAfter(func(ctx context.Context, data *model.SystemUser, params *gjson.Result) error {
+		if !params.Get("password").Exists() {
+			return response.BusinessLangError("system.user.validator.password")
+		}
+		return nil
+	})
+
+	res.SaveBefore(func(ctx context.Context, data *model.SystemUser, params *gjson.Result) error {
 		roleIds := cast.ToIntSlice(params.Get("roles").Value())
-		roles := []model.SystemRole{}
-		err := database.Gorm().Model(model.SystemRole{}).Find(&roles, roleIds).Error
+		roles := make([]model.SystemRole, 0)
+		err := database.GormCtx(ctx).Model(model.SystemRole{}).Find(&roles, roleIds).Error
 		if err != nil {
 			return err
 		}
-		err = database.Gorm().Model(data).Association("Roles").Replace(roles)
+		err = database.GormCtx(ctx).Model(data).Association("Roles").Replace(roles)
 		if err != nil {
 			return err
 		}

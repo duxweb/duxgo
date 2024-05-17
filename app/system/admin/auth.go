@@ -26,8 +26,8 @@ import (
 func Login(ctx echo.Context) error {
 
 	var params struct {
-		Username string `json:"username" validate:"required" validateMsg:"请输入账号"`
-		Password string `json:"password" validate:"required" validateMsg:"请输入密码"`
+		Username string `json:"username" validate:"required" langMessage:"system.auth.validator.username"`
+		Password string `json:"password" validate:"required" langMessage:"system.auth.validator.password"`
 	}
 	if err := validator.RequestParser(ctx, &params); err != nil {
 		return err
@@ -36,7 +36,7 @@ func Login(ctx echo.Context) error {
 	var user model.SystemUser
 	err := database.Gorm().Model(model.SystemUser{Username: params.Username}).Preload("Roles").First(&user).Error
 	if errors.Is(err, gorm.ErrRecordNotFound) {
-		return response.BusinessError("账号或密码错误")
+		return response.BusinessLangError("system.auth.error.login")
 	}
 	if err != nil {
 		return err
@@ -51,7 +51,7 @@ func Login(ctx echo.Context) error {
 	}
 
 	if !isPass {
-		return response.BusinessError("账号或密码错误")
+		return response.BusinessLangError("system.auth.error.login")
 	}
 
 	token, err := auth.NewJWT().MakeToken("admin", cast.ToString(user.ID))

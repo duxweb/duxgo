@@ -73,6 +73,7 @@ export const adminResources = (app: App, context: appContext) => {
         label: 'system.logGroup',
         parent: 'system',
         icon: 'i-tabler:list',
+        sort: 102,
       },
     },
     {

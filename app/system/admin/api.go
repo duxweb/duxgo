@@ -29,7 +29,7 @@ func ApiRes() action.Result {
 
 	res.Validator(func(data *gjson.Result, e echo.Context) (validator.ValidatorRule, error) {
 		return validator.ValidatorRule{
-			"name": {Rule: "required", Message: "请填写名称"},
+			"name": {Rule: "required", LangMessage: "system.api.validator.name"},
 		}, nil
 	})
 

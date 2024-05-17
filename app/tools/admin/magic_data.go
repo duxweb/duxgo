@@ -1,6 +1,7 @@
 package admin
 
 import (
+	"context"
 	model "dux-project/app/tools/models"
 	"dux-project/app/tools/services"
 	"encoding/json"
@@ -110,7 +111,7 @@ func MagicDataRes() action.Result {
 		return nil
 	})
 
-	res.SaveBefore(func(data *model.ToolsMagicData, params *gjson.Result) error {
+	res.SaveBefore(func(ctx context.Context, data *model.ToolsMagicData, params *gjson.Result) error {
 		key := []byte("magic.menus")
 		cache.Injector().Del(key)
 		return nil

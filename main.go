@@ -1,7 +1,6 @@
 package main
 
 import (
-	"dux-project/app/home"
 	"dux-project/app/system"
 	"dux-project/app/tools"
 	"dux-project/runtime"
@@ -18,6 +17,6 @@ func main() {
 
 	app.SetStaticFs(StaticFs)
 	app.SetAnnotations(runtime.Annotations)
-	app.RegisterApp(home.App, system.App, tools.App)
+	app.RegisterApp(system.App, tools.App)
 	app.Run()
 }

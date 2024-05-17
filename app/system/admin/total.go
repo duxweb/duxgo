@@ -90,7 +90,7 @@ func Speed(ctx echo.Context) error {
 	}
 
 	if !resData.Get("data").Exists() {
-		return response.BusinessError("无法获取测速节点")
+		return response.BusinessLangError("system.total.validator.node")
 	}
 
 	values := map[string]bool{}
@@ -117,13 +117,13 @@ func SpeedSubmit(ctx echo.Context) error {
 	}
 
 	if !data.Get("net").Exists() {
-		return response.BusinessError("请选择线路")
+		return response.BusinessLangError("system.total.validator.line")
 	}
 
 	token := config.Load("use").GetString("extend.speed")
 
 	if data.Get("token").String() == "" && token == "" {
-		return response.BusinessError("请输入 Token")
+		return response.BusinessLangError("system.total.validator.token")
 	} else {
 		token = data.Get("token").String()
 	}
@@ -150,7 +150,7 @@ func SpeedSubmit(ctx echo.Context) error {
 	}
 
 	if !resData.Exists() {
-		return response.BusinessError("无法获取测速节点")
+		return response.BusinessLangError("system.total.validator.node")
 	}
 
 	chinaMaps := SpeedChinaMaps()
@@ -177,7 +177,7 @@ func SpeedSubmit(ctx echo.Context) error {
 	}
 
 	if len(nodes) == 0 {
-		return response.BusinessError("无法获取测速节点")
+		return response.BusinessLangError("system.total.validator.node")
 	}
 
 	get, err = client.

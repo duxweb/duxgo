@@ -34,6 +34,7 @@ var LangFs embed.FS
 func Init(t *app.Dux) {
 	t.RegisterLangFS(LangFs)
 	t.RegisterTplFS("manage", ViewsFs)
+	route.Set("web", route.New(""))
 
 	resources.Set("admin", resources.
 		New("admin", "/admin").
