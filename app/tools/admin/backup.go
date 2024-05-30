@@ -62,7 +62,7 @@ func BackupDownloadList(c echo.Context) error {
 	}
 
 	if !fsutil.FileExist(info.Url) {
-		return response.BusinessError("备份文件不存在")
+		return response.BusinessLangError("tools.backup.validator.file")
 	}
 
 	return c.File(info.Url)
@@ -77,7 +77,7 @@ func BackupImport(c echo.Context) error {
 	}
 
 	if !dataJson.Get("file.0.url").Exists() {
-		return response.BusinessError("上传文件不存在")
+		return response.BusinessLangError("tools.backup.validator.file")
 	}
 	url := dataJson.Get("file.0.url").String()
 
@@ -118,7 +118,7 @@ func BackupImport(c echo.Context) error {
 	}
 
 	if len(jsonFiles) == 0 {
-		return response.BusinessError("备份文件不存在")
+		return response.BusinessLangError("tools.backup.validator.file")
 	}
 
 	e := &event2.BackupEvent{BackupData: []map[string]any{}}
@@ -155,7 +155,7 @@ func BackupImport(c echo.Context) error {
 	}
 
 	if len(jsonFiles) == 0 {
-		return response.BusinessError("找不到可恢复数据")
+		return response.BusinessLangError("tools.backup.validator.notFound")
 	}
 
 	for _, item := range models {
@@ -179,7 +179,7 @@ func BackupImport(c echo.Context) error {
 	}
 
 	return response.Send(c, response.Data{
-		Message: "导入成功",
+		MessageLang: "tools.backup.message.import",
 	}, 200)
 }
 
@@ -209,8 +209,8 @@ func BackupExportList(c echo.Context) error {
 func BackupExport(c echo.Context) error {
 
 	var params struct {
-		Name string   `json:"name" validate:"required" validateMsg:"请输入描述"`
-		Data []string `json:"data" validate:"required" validateMsg:"请选择导出数据"`
+		Name string   `json:"name" validate:"required" langMessage:"tools.backup.validator.title"`
+		Data []string `json:"data" validate:"required" langMessage:"tools.backup.validator.table"`
 	}
 	if err := validator.RequestParser(c, &params); err != nil {
 		return err
@@ -250,7 +250,7 @@ func BackupExport(c echo.Context) error {
 
 	}
 	if len(files) == 0 {
-		return response.BusinessError("备份数据不存在")
+		return response.BusinessLangError("tools.backup.validator.notFound")
 	}
 
 	backupDir := "./data/backup"

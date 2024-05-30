@@ -54,20 +54,20 @@ func MagicRes() action.Result {
 		pattern := "^[a-zA-Z][\\w]*[a-zA-Z0-9]$"
 
 		validatorData := validator.ValidatorRule{
-			"fields":   {Rule: "required", Message: "请填写魔方描述"},
-			"group_id": {Rule: "required", Message: "请选择魔方组"},
-			"name":     {Rule: "fieldName", Message: "表名填写错误"},
+			"fields":   {Rule: "required", LangMessage: "tools.magic.validator.fields"},
+			"group_id": {Rule: "required", LangMessage: "tools.magic.validator.group"},
+			"name":     {Rule: "fieldName", LangMessage: "tools.magic.validator.name"},
 		}
 
 		fields := data.Get("fields").Array()
 
 		for _, field := range fields {
 			if !field.Get("name").Exists() && !field.Get("label").Exists() {
-				return nil, response.BusinessError("字段信息不完整")
+				return nil, response.BusinessLangError("tools.magic.validator.fieldsFull")
 			}
 			_, err := regexp.MatchString(pattern, field.Get("name").String())
 			if err != nil {
-				return nil, response.BusinessError("字段名不规范")
+				return nil, response.BusinessLangError("tools.magic.validator.fieldsFormat")
 			}
 		}
 

@@ -28,7 +28,7 @@ func MagicSourceRes() action.Result {
 
 	res.Validator(func(data *gjson.Result, e echo.Context) (validator.ValidatorRule, error) {
 		validatorData := validator.ValidatorRule{
-			"name": {Rule: "required", Message: "请填写数据源名称"},
+			"name": {Rule: "required", Message: "tools.magicSource.validator.name"},
 		}
 		return validatorData, nil
 	})
@@ -37,7 +37,7 @@ func MagicSourceRes() action.Result {
 
 		jsonData := data.Get("data").String()
 		if data.Get("data").Exists() && !jsonutil.IsJSON(jsonData) {
-			return response.BusinessError("数据格式不正确")
+			return response.BusinessLangError("tools.magicSource.validator.data")
 		}
 
 		model.Name = data.Get("name").String()

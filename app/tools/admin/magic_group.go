@@ -40,9 +40,9 @@ func MagicGroupRes() action.Result {
 	res.Validator(func(data *gjson.Result, e echo.Context) (validator.ValidatorRule, error) {
 
 		validatorData := validator.ValidatorRule{
-			"name":  {Rule: "required", Message: "请填写组名"},
-			"label": {Rule: "required", Message: "请填写组描述"},
-			"icon":  {Rule: "required", Message: "请填写图标名"},
+			"name":  {Rule: "required", LangMessage: "tools.magicGroup.validator.name"},
+			"label": {Rule: "required", LangMessage: "tools.magicGroup.validator.label"},
+			"icon":  {Rule: "required", LangMessage: "tools.magicGroup.validator.icon"},
 		}
 
 		return validatorData, nil

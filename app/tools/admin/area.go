@@ -56,7 +56,7 @@ func AreaImport(c echo.Context) error {
 	}
 
 	if !dataJson.Get("file.0.url").Exists() {
-		return response.BusinessError("上传文件不存在")
+		return response.BusinessLangError("tools.area.validator.file")
 	}
 
 	url := dataJson.Get("file.0.url").String()

@@ -100,6 +100,15 @@ const List = () => {
           </>
         )
       }}
+      filterAdvRender={() => {
+        return (
+          <>
+            <FilterItem name='keywordssww'>
+              <Input />
+            </FilterItem>
+          </>
+        )
+      }}
     />
   )
 }

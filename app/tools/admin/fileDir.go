@@ -27,7 +27,7 @@ func FileDirRes() action.Result {
 
 	res.Validator(func(data *gjson.Result, e echo.Context) (validator.ValidatorRule, error) {
 		return validator.ValidatorRule{
-			"name": {Rule: "required", Message: "请输入名称"},
+			"name": {Rule: "required", LangMessage: "tools.fileDir.validator.name"},
 		}, nil
 	})
 

@@ -3,6 +3,7 @@ package services
 import (
 	model "dux-project/app/tools/models"
 	"encoding/json"
+	"github.com/duxweb/go-fast/i18n"
 	"github.com/duxweb/go-fast/validator"
 	"github.com/spf13/cast"
 	"strings"
@@ -20,7 +21,9 @@ func MagicValidator(fields []model.ToolsMagicFields) validator.ValidatorRule {
 		if field.Required {
 			rules = append(rules, map[string]any{
 				"required": true,
-				"message":  "请填写" + field.Label,
+				"message": i18n.Trans.GetData("tools.magic.validator.required", map[string]any{
+					"label": field.Label,
+				}),
 			})
 		}
 

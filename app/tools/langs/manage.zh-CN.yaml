@@ -1,44 +1,64 @@
-system:
-  name: 系统
-  auth:
+tools:
+  name: 工具
+  area:
+    name: 地区数据
+    import:
+      name: 导入
+    cascade:
+      name: 选择
     validator:
-      username: 请输入账号
-      password: 请输入密码
-    error:
-      login: 账号或者密码错误
-      passwordCheck: 三次登录密码错误，等待一分钟
-  user:
-    name: 管理员管理
-    validator:
-      nickname: 请输入昵称
-      username: 请输入用户名
-      usernameExists: 该用户已存在
-      password: 请输入密码
-      roles: 请选择角色
-  role:
-    name: 管理员角色
+      file: 上传文件不存在
+  magicGroup:
+    name: 数据分组
     validator:
       name: 请输入名称
-    permission:
-      name: 权限
-  operate:
-    name: 操作记录
-  total:
-    name: 系统统计
-    stats:
-      name: 运行状态
-    hardware:
-      name: 硬件数据
-    speedNode:
-      name: 测速节点
-    speedTest:
-      name: 站点测速
+      label: 请输入标签
+      icon: 请输入图标名
+  magic:
+    name: 数据魔方
     validator:
-      node: 暂无可用测速节点
-      line: 请选择测速线路
-      token: 请填写测速 token
-  api:
-    name: 接口授权
+      name: 数据名只能为英文数字和下划线
+      group: 请选择数据分组
+      label: 请输入数据标签
+      fields: 请配置数据字段
+      fieldsFull: 字段配置不完整
+      fieldsFormat: 字段名只能为英文数字和下划线
+      data: 数据不存在
+      required: 请填写 {{label}}
+    source:
+      name: 数据源
+    config:
+      name: 配置
+    sourceData:
+      name: 数据
+  magicSource:
+    name: 数据源
     validator:
       name: 请输入名称
-
+      data: 数据格式不正确
+  file:
+    name: 附件管理
+  fileDir:
+    name: 附件目录
+    validator:
+      name: 请输入目录名
+  backup:
+    name: 备份恢复
+    validator:
+      table: 请选择导出表
+      title: 请填写描述
+      notFound: 没有找到数据
+      file: 备份文件不存在
+    message:
+      export: 导出数据成功
+      import: 导入数据成功
+    import:
+      name: 导入
+    export:
+      name: 导出
+    download:
+      name: 下载
+extend:
+  name: 扩展
+  magic:
+    name: 数据魔方
