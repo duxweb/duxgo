@@ -67,7 +67,7 @@ func Login(ctx echo.Context) error {
 	return response.Send(ctx, response.Data{
 		Data: map[string]any{
 			"userInfo": map[string]any{
-				"user_id":  user.ID,
+				"id":       user.ID,
 				"avatar":   user.Avatar,
 				"username": user.Username,
 				"nickname": user.Nickname,
@@ -116,7 +116,7 @@ func Check(ctx echo.Context) error {
 	return response.Send(ctx, response.Data{
 		Data: map[string]any{
 			"userInfo": map[string]any{
-				"user_id":  user.ID,
+				"id":       user.ID,
 				"avatar":   user.Avatar,
 				"username": user.Username,
 				"nickname": user.Nickname,

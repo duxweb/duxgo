@@ -8,9 +8,7 @@
 
 
 # 概述
-DuxGO 是一款基于 go-echo 框架整合常用的 ORM、日志、队列、缓存等 web 开发常用功能，提供了一个简单、易用、灵活的框架。
-
-本示例集成了 duxgo 框架与 duxgo-ui UI扩展包与 duxgo-admin 后台管理包，本示例用于 duxgo 的基础使用示例。
+DuxGO 是一款基于 go-echo 框架整合常用的 ORM、日志、队列、缓存、rbac 等 web 开发常用功能，提供了一个简单、易用、灵活的中后台管理系统。
 
 # 依赖
 
@@ -56,11 +54,5 @@ go run main.go
 # 后台地址
 
 ```
-0.0.0.0:8080/admin
+0.0.0.0:8080/manage
 ```
-
-# 讨论
-
-您可以暂时加入我们的 Duxravel 群进行讨论
-
-<img src="https://www.duxravel.com/assets/images/wechat-684dffdb33c2f67413bf3bdd162fc815.png" />

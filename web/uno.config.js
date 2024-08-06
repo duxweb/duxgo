@@ -18,7 +18,10 @@ export default defineConfig({
     presetIcons({
       prefix: 'i-',
       collections: {
-        tabler: () => import('@iconify-json/tabler/icons.json').then((i) => i.default),
+        tabler: () =>
+          import('@iconify-json/tabler/icons.json', { with: { type: 'json' } }).then(
+            (i) => i.default,
+          ),
       },
     }),
   ],
