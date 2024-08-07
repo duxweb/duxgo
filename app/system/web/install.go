@@ -1,6 +1,7 @@
 package web
 
 import (
+	"encoding/hex"
 	"fmt"
 	"github.com/duxweb/go-fast/config"
 	"github.com/duxweb/go-fast/database"
@@ -9,6 +10,7 @@ import (
 	"github.com/duxweb/go-fast/response"
 	"github.com/gookit/color"
 	"github.com/gookit/goutil/fsutil"
+	"github.com/gookit/goutil/strutil"
 	"github.com/labstack/echo/v4"
 	"github.com/samber/lo"
 	"github.com/spf13/viper"
@@ -211,12 +213,18 @@ func InstallComplete(ctx echo.Context) error {
 		return err
 	}
 
+	str, err := strutil.RandomBytes(16)
+	if err != nil {
+		return err
+	}
+	secret := hex.EncodeToString(str)
+
 	useViper.Set("app.name", useConfig["name"].String())
 	useViper.Set("app.domain", useConfig["domain"].String())
-	useViper.Set("app.secret", helper.RandString(32))
+	useViper.Set("app.secret", secret)
 	useViper.Set("app.lang", useConfig["lang"].String())
 
-	config.Load("use").Set("app.secret", helper.RandString(32))
+	config.Load("use").Set("app.secret", secret)
 
 	err = useViper.WriteConfig()
 	if err != nil {
