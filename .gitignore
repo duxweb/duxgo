@@ -4,5 +4,6 @@ data
 tmp
 uploads
 builds
+database
 static/web
 routes.json
