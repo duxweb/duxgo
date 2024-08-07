@@ -7,6 +7,7 @@ import (
 	"github.com/duxweb/go-fast/global"
 	"github.com/duxweb/go-fast/helper"
 	"github.com/duxweb/go-fast/response"
+	"github.com/gookit/color"
 	"github.com/gookit/goutil/fsutil"
 	"github.com/labstack/echo/v4"
 	"github.com/samber/lo"
@@ -15,7 +16,9 @@ import (
 	"gorm.io/driver/mysql"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
+	"os"
 	"strings"
+	"time"
 )
 
 // @RouteGroup(app="web", name = "install", route = "/install")
@@ -213,6 +216,8 @@ func InstallComplete(ctx echo.Context) error {
 	useViper.Set("app.secret", helper.RandString(32))
 	useViper.Set("app.lang", useConfig["lang"].String())
 
+	config.Load("use").Set("app.secret", helper.RandString(32))
+
 	err = useViper.WriteConfig()
 	if err != nil {
 		return err
@@ -264,10 +269,18 @@ func InstallComplete(ctx echo.Context) error {
 	// 安装锁定
 	fsutil.MustCreateFile("./data/install.lock", 0777, 0777)
 
+	go func() {
+		time.Sleep(3 * time.Second)
+		defer func() {
+			color.Errorln("Installation is complete, please restart the service")
+			os.Exit(0)
+		}()
+	}()
+
 	return response.Send(ctx, response.Data{
 		Data: map[string]any{
-			"error":   false,
-			"message": "",
+			"error":   true,
+			"message": "安装完毕，请重新启动",
 			"logs":    strings.Join(messageData, "\n"),
 		},
 	})
