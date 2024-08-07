@@ -26,7 +26,6 @@ func Index(ctx echo.Context) error {
 	if err != nil {
 		isManifest = false
 	}
-	fmt.Println("file", isManifest)
 
 	json := gjson.ParseBytes(file)
 

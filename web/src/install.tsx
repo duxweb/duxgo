@@ -20,6 +20,7 @@ root.render(
       pathConfig='/install/config'
       pathComplete='/install/complete'
       logo={<DuxLogo className='h-10' />}
+      databaseTypes={['sqlite', 'mysql', 'postgresql']}
     />
   </DuxApp>
 )

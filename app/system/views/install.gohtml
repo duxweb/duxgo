@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{ .title }}</title>
+    {{if .vite.dev }}
+        <script type="module">
+          import RefreshRuntime from "http://0.0.0.0:{{.vite.port}}/web/@react-refresh"
+          RefreshRuntime.injectIntoGlobalHook(window)
+          window.$RefreshReg$ = () => {}
+          window.$RefreshSig$ = () => (type) => type
+          window.__vite_plugin_react_preamble_installed__ = true
+        </script>
+        <script type="module" src="http://0.0.0.0:{{.vite.port}}/web/@vite/client"></script>
+    {{else}}
+        <link rel="stylesheet" href="/web/{{.manifest.css}}" />
+        <script type="module" src="/web/{{.manifest.js}}"></script>
+    {{end}}
+</head>
+<body  class="bg-page text-primary">
+<noscript>You need to enable JavaScript to run this app.</noscript>
+<div id="root"></div>
+
+{{if .vite.dev }}
+<script type="module" src="http://0.0.0.0:{{.vite.port}}/web/src/install.tsx"></script>
+{{end}}
+</body>
+</html>

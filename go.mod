@@ -3,7 +3,6 @@ module dux-project
 go 1.22
 
 require (
-	entgo.io/ent v0.13.1
 	github.com/duxweb/go-fast v0.0.0
 	github.com/gabriel-vasile/mimetype v1.4.3
 	github.com/go-errors/errors v1.5.1
@@ -15,8 +14,11 @@ require (
 	github.com/mileusna/useragent v1.3.4
 	github.com/samber/lo v1.39.0
 	github.com/spf13/cast v1.6.0
+	github.com/spf13/viper v1.18.2
 	github.com/tidwall/gjson v1.17.1
 	gorm.io/datatypes v1.2.0
+	gorm.io/driver/mysql v1.5.6
+	gorm.io/driver/postgres v1.5.7
 	gorm.io/gorm v1.25.10
 )
 
@@ -106,7 +108,6 @@ require (
 	github.com/sourcegraph/conc v0.3.0 // indirect
 	github.com/spf13/afero v1.11.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
-	github.com/spf13/viper v1.18.2 // indirect
 	github.com/subosito/gotenv v1.6.0 // indirect
 	github.com/tencentyun/cos-go-sdk-v5 v0.7.47 // indirect
 	github.com/tidwall/match v1.1.1 // indirect
@@ -141,8 +142,6 @@ require (
 	gopkg.in/natefinch/lumberjack.v2 v2.2.1 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
-	gorm.io/driver/mysql v1.5.6 // indirect
-	gorm.io/driver/postgres v1.5.7 // indirect
 	modernc.org/libc v1.22.5 // indirect
 	modernc.org/mathutil v1.5.0 // indirect
 	modernc.org/memory v1.5.0 // indirect

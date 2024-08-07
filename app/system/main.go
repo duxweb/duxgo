@@ -34,7 +34,7 @@ var LangFs embed.FS
 func Init(t *app.Dux) {
 	t.RegisterLangFS(LangFs)
 	t.RegisterTplFS("manage", ViewsFs)
-	route.Set("web", route.New(""))
+	route.Set("web", route.New("", middleware.VisitorMiddleware))
 
 	resources.Set("admin", resources.
 		New("admin", "/admin").
@@ -51,7 +51,7 @@ func Init(t *app.Dux) {
 }
 
 func Register(t *app.Dux) {
-	group := route.Get("web").Group("", "web.test", middleware.VisitorMiddleware)
+	group := route.Get("web").Group("", "web.test")
 	group.Get("/test", func(c echo.Context) error {
 		return c.String(http.StatusOK, "Hello, World!")
 	}, "web.home")

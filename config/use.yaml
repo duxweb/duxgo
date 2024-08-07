@@ -1,14 +1,13 @@
 app:
-    name: Dux
-    lang: zh-CN
     debug: true
-    secret: a9dfda61e965d5101dfbf31e959fe096
-    domain: 'http://localhost'
+    domain: http://localhost
+    lang: zh-CN
+    name: Dux
+    secret: NKYYCXTXDYOJCIQHDGWYBQCAYTPZLFLW
+manage:
+    indexname: cms
 server:
     port: 8900
     timeout: 30
 vite:
     port: 5173
-manage:
-    indexName: cms
-    baiduMap:

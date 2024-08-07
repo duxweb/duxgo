@@ -727,10 +727,10 @@
   resolved "https://registry.yarnpkg.com/@colors/colors/-/colors-1.5.0.tgz#bb504579c1cae923e6576a4f5da43d25f97bdbd9"
   integrity sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==
 
-"@duxweb/dux-extend@^0.2.1":
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/@duxweb/dux-extend/-/dux-extend-0.2.1.tgz#62276e31925c1cb0049518d43930956f04bef9e4"
-  integrity sha512-h1VnAdLDvHS0MiNmudRmdQS33+hpwZn49tHR18OsOyUDd/tnHoLZx1yFFiLYEa4KuOPeXPoFs5riDtEkW3knyw==
+"@duxweb/dux-extend@^0.2.5":
+  version "0.2.5"
+  resolved "https://registry.yarnpkg.com/@duxweb/dux-extend/-/dux-extend-0.2.5.tgz#a1061589ed6de247474cff542de23d4060c7cc98"
+  integrity sha512-W5N+33d06wcnmHCTdqUMW3+ypBlojeIpO3S2ckY080xrQ+RD+yZTAAFVhro99azLv4eLduaFzu7Z591uCYsUWA==
   dependencies:
     "@types/fabric" "^5.3.7"
     fabric "^5.3.0"

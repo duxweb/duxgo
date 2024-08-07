@@ -235,6 +235,64 @@ var Annotations = []*annotation.File{
 				Name: "RouteGroup",
 				Params: map[string]any{
 					"app":   "web",
+					"name":  "install",
+					"route": "/install",
+				},
+			},
+			{
+				Name: "Route",
+				Params: map[string]any{
+					"method": "GET",
+					"name":   "install.location",
+					"route":  "",
+				},
+				Func: appSystemWeb.InstallLocation,
+			},
+			{
+				Name: "Route",
+				Params: map[string]any{
+					"method": "GET",
+					"name":   "install.index",
+					"route":  "/",
+				},
+				Func: appSystemWeb.InstallIndex,
+			},
+			{
+				Name: "Route",
+				Params: map[string]any{
+					"method": "GET",
+					"name":   "install.detection",
+					"route":  "/detection",
+				},
+				Func: appSystemWeb.InstallDetection,
+			},
+			{
+				Name: "Route",
+				Params: map[string]any{
+					"method": "POST",
+					"name":   "install.config",
+					"route":  "/config",
+				},
+				Func: appSystemWeb.InstallConfig,
+			},
+			{
+				Name: "Route",
+				Params: map[string]any{
+					"method": "POST",
+					"name":   "install.complete",
+					"route":  "/complete",
+				},
+				Func: appSystemWeb.InstallComplete,
+			},
+		},
+	},
+	{
+		Name: "dux-project/app/system/web",
+		Annotations: []*annotation.Annotation{
+			{
+				Name: "RouteGroup",
+				Params: map[string]any{
+					"app":   "web",
 					"name":  "manage",
 					"route": "/manage",
 				},
