@@ -1,22 +1,22 @@
 db:
-    drivers:
-        default:
-            file: ./database/app.db
-            maxidleconns: 10
-            maxopenconns: 100
-            type: sqlite
+  drivers:
+    default:
+      file: "./database/app.db"
+      type: sqlite
+      maxIdleConns: 10
+      maxOpenConns: 100
 mongodb:
-    drivers:
-        default:
-            dbname: duxgo
-            host: localhost
-            password: ""
-            port: 27017
-            username: ""
+  drivers:
+    default:
+      host: localhost
+      port: 27017
+      database: duxgo
+      username: ""
+      password: ""
 redis:
-    drivers:
-        default:
-            db: 0
-            host: localhost
-            password: ""
-            port: 6379
+  drivers:
+    default:
+      db: 0
+      host: localhost
+      password: ""
+      port: 6379

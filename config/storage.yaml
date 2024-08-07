@@ -1,10 +1,14 @@
-drivers:
-    local:
-        domain: http://localhost
-        path: ./public/uploads
-        type: local
-    qiniu:
-        domain: http://cdn.xxxx.com
-        type: qiniu
-maxsize: 10240
 type: local
+maxsize: 10240
+ext:
+drivers:
+  local:
+    type: local
+    path: ./public/uploads
+    domain: http://0.0.0.0:8900/uploads
+  qiniu:
+    type: qiniu
+    accessKey:
+    secretKey:
+    bucket:
+    domain: http://cdn.xxxx.com

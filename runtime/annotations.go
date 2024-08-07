@@ -1,14 +1,17 @@
+
 package runtime
 
 import (
-	appSystemAdmin "dux-project/app/system/admin"
-	appSystemModels "dux-project/app/system/models"
-	appSystemWeb "dux-project/app/system/web"
-	appToolsAdmin "dux-project/app/tools/admin"
-	appToolsListener "dux-project/app/tools/listener"
-	appToolsModels "dux-project/app/tools/models"
+	appSystemAdmin	"dux-project/app/system/admin"
+	appSystemModels	"dux-project/app/system/models"
+	appSystemWeb	"dux-project/app/system/web"
+	appToolsAdmin	"dux-project/app/tools/admin"
+	appToolsListener	"dux-project/app/tools/listener"
+	appToolsModels	"dux-project/app/tools/models"
 	"github.com/duxweb/go-fast/annotation"
 )
+
+
 
 var Annotations = []*annotation.File{
 	{
@@ -17,8 +20,8 @@ var Annotations = []*annotation.File{
 			{
 				Name: "Resource",
 				Params: map[string]any{
-					"app":   "admin",
-					"name":  "system.api",
+					"app": "admin",
+					"name": "system.api",
 					"route": "/system/api",
 				},
 				Func: appSystemAdmin.ApiRes,
@@ -31,8 +34,8 @@ var Annotations = []*annotation.File{
 			{
 				Name: "RouteGroup",
 				Params: map[string]any{
-					"app":   "web",
-					"name":  "auth",
+					"app": "web",
+					"name": "auth",
 					"route": "/admin",
 				},
 			},
@@ -40,8 +43,8 @@ var Annotations = []*annotation.File{
 				Name: "Route",
 				Params: map[string]any{
 					"method": "POST",
-					"name":   "login",
-					"route":  "/login",
+					"name": "login",
+					"route": "/login",
 				},
 				Func: appSystemAdmin.Login,
 			},
@@ -49,8 +52,8 @@ var Annotations = []*annotation.File{
 				Name: "Route",
 				Params: map[string]any{
 					"method": "POST",
-					"name":   "check",
-					"route":  "/check",
+					"name": "check",
+					"route": "/check",
 				},
 				Func: appSystemAdmin.Check,
 			},
@@ -62,8 +65,8 @@ var Annotations = []*annotation.File{
 			{
 				Name: "Resource",
 				Params: map[string]any{
-					"app":   "admin",
-					"name":  "system.operate",
+					"app": "admin",
+					"name": "system.operate",
 					"route": "/system/operate",
 				},
 				Func: appSystemAdmin.OperateRes,
@@ -76,8 +79,8 @@ var Annotations = []*annotation.File{
 			{
 				Name: "Resource",
 				Params: map[string]any{
-					"app":   "admin",
-					"name":  "system.role",
+					"app": "admin",
+					"name": "system.role",
 					"route": "/system/role",
 				},
 				Func: appSystemAdmin.RoleRes,
@@ -86,8 +89,8 @@ var Annotations = []*annotation.File{
 				Name: "Action",
 				Params: map[string]any{
 					"method": "GET",
-					"name":   "permission",
-					"route":  "/permission",
+					"name": "permission",
+					"route": "/permission",
 				},
 				Func: appSystemAdmin.RolePermission,
 			},
@@ -99,8 +102,8 @@ var Annotations = []*annotation.File{
 			{
 				Name: "RouteGroup",
 				Params: map[string]any{
-					"app":   "admin",
-					"name":  "auth",
+					"app": "admin",
+					"name": "auth",
 					"route": "",
 				},
 			},
@@ -108,8 +111,8 @@ var Annotations = []*annotation.File{
 				Name: "Route",
 				Params: map[string]any{
 					"method": "GET",
-					"name":   "menu",
-					"route":  "/menu",
+					"name": "menu",
+					"route": "/menu",
 				},
 				Func: appSystemAdmin.Menu,
 			},
@@ -121,8 +124,8 @@ var Annotations = []*annotation.File{
 			{
 				Name: "RouteGroup",
 				Params: map[string]any{
-					"app":   "admin",
-					"name":  "system.total",
+					"app": "admin",
+					"name": "system.total",
 					"route": "/system/total",
 				},
 			},
@@ -130,8 +133,8 @@ var Annotations = []*annotation.File{
 				Name: "Route",
 				Params: map[string]any{
 					"method": "GET",
-					"name":   "total",
-					"route":  "",
+					"name": "total",
+					"route": "",
 				},
 				Func: appSystemAdmin.Total,
 			},
@@ -139,8 +142,8 @@ var Annotations = []*annotation.File{
 				Name: "Route",
 				Params: map[string]any{
 					"method": "GET",
-					"name":   "hardware",
-					"route":  "/hardware",
+					"name": "hardware",
+					"route": "/hardware",
 				},
 				Func: appSystemAdmin.Hardware,
 			},
@@ -148,8 +151,8 @@ var Annotations = []*annotation.File{
 				Name: "Route",
 				Params: map[string]any{
 					"method": "GET",
-					"name":   "speed",
-					"route":  "/speed",
+					"name": "speed",
+					"route": "/speed",
 				},
 				Func: appSystemAdmin.Speed,
 			},
@@ -157,8 +160,8 @@ var Annotations = []*annotation.File{
 				Name: "Route",
 				Params: map[string]any{
 					"method": "POST",
-					"name":   "speed",
-					"route":  "/speed",
+					"name": "speed",
+					"route": "/speed",
 				},
 				Func: appSystemAdmin.SpeedSubmit,
 			},
@@ -170,8 +173,8 @@ var Annotations = []*annotation.File{
 			{
 				Name: "Resource",
 				Params: map[string]any{
-					"app":   "admin",
-					"name":  "system.user",
+					"app": "admin",
+					"name": "system.user",
 					"route": "/system/user",
 				},
 				Func: appSystemAdmin.UserRes,
@@ -182,9 +185,10 @@ var Annotations = []*annotation.File{
 		Name: "dux-project/app/system/models",
 		Annotations: []*annotation.Annotation{
 			{
-				Name:   "AutoMigrate",
-				Params: map[string]any{},
-				Func:   appSystemModels.Config{},
+				Name: "AutoMigrate",
+				Params: map[string]any{
+				},
+				Func: appSystemModels.Config{},
 			},
 		},
 	},
@@ -192,9 +196,10 @@ var Annotations = []*annotation.File{
 		Name: "dux-project/app/system/models",
 		Annotations: []*annotation.Annotation{
 			{
-				Name:   "AutoMigrate",
-				Params: map[string]any{},
-				Func:   appSystemModels.LogApi{},
+				Name: "AutoMigrate",
+				Params: map[string]any{
+				},
+				Func: appSystemModels.LogApi{},
 			},
 		},
 	},
@@ -202,9 +207,10 @@ var Annotations = []*annotation.File{
 		Name: "dux-project/app/system/models",
 		Annotations: []*annotation.Annotation{
 			{
-				Name:   "AutoMigrate",
-				Params: map[string]any{},
-				Func:   appSystemModels.SystemApi{},
+				Name: "AutoMigrate",
+				Params: map[string]any{
+				},
+				Func: appSystemModels.SystemApi{},
 			},
 		},
 	},
@@ -212,9 +218,10 @@ var Annotations = []*annotation.File{
 		Name: "dux-project/app/system/models",
 		Annotations: []*annotation.Annotation{
 			{
-				Name:   "AutoMigrate",
-				Params: map[string]any{},
-				Func:   appSystemModels.SystemRole{},
+				Name: "AutoMigrate",
+				Params: map[string]any{
+				},
+				Func: appSystemModels.SystemRole{},
 			},
 		},
 	},
@@ -222,9 +229,10 @@ var Annotations = []*annotation.File{
 		Name: "dux-project/app/system/models",
 		Annotations: []*annotation.Annotation{
 			{
-				Name:   "AutoMigrate",
-				Params: map[string]any{},
-				Func:   appSystemModels.SystemUserMigrate,
+				Name: "AutoMigrate",
+				Params: map[string]any{
+				},
+				Func: appSystemModels.SystemUserMigrate,
 			},
 		},
 	},
@@ -234,8 +242,8 @@ var Annotations = []*annotation.File{
 			{
 				Name: "RouteGroup",
 				Params: map[string]any{
-					"app":   "web",
-					"name":  "install",
+					"app": "web",
+					"name": "install",
 					"route": "/install",
 				},
 			},
@@ -243,8 +251,8 @@ var Annotations = []*annotation.File{
 				Name: "Route",
 				Params: map[string]any{
 					"method": "GET",
-					"name":   "install.location",
-					"route":  "",
+					"name": "install.location",
+					"route": "",
 				},
 				Func: appSystemWeb.InstallLocation,
 			},
@@ -252,8 +260,8 @@ var Annotations = []*annotation.File{
 				Name: "Route",
 				Params: map[string]any{
 					"method": "GET",
-					"name":   "install.index",
-					"route":  "/",
+					"name": "install.index",
+					"route": "/",
 				},
 				Func: appSystemWeb.InstallIndex,
 			},
@@ -261,8 +269,8 @@ var Annotations = []*annotation.File{
 				Name: "Route",
 				Params: map[string]any{
 					"method": "GET",
-					"name":   "install.detection",
-					"route":  "/detection",
+					"name": "install.detection",
+					"route": "/detection",
 				},
 				Func: appSystemWeb.InstallDetection,
 			},
@@ -270,8 +278,8 @@ var Annotations = []*annotation.File{
 				Name: "Route",
 				Params: map[string]any{
 					"method": "POST",
-					"name":   "install.config",
-					"route":  "/config",
+					"name": "install.config",
+					"route": "/config",
 				},
 				Func: appSystemWeb.InstallConfig,
 			},
@@ -279,8 +287,8 @@ var Annotations = []*annotation.File{
 				Name: "Route",
 				Params: map[string]any{
 					"method": "POST",
-					"name":   "install.complete",
-					"route":  "/complete",
+					"name": "install.complete",
+					"route": "/complete",
 				},
 				Func: appSystemWeb.InstallComplete,
 			},
@@ -292,8 +300,8 @@ var Annotations = []*annotation.File{
 			{
 				Name: "RouteGroup",
 				Params: map[string]any{
-					"app":   "web",
-					"name":  "manage",
+					"app": "web",
+					"name": "manage",
 					"route": "/manage",
 				},
 			},
@@ -301,8 +309,8 @@ var Annotations = []*annotation.File{
 				Name: "Route",
 				Params: map[string]any{
 					"method": "GET",
-					"name":   "manage.location",
-					"route":  "",
+					"name": "manage.location",
+					"route": "",
 				},
 				Func: appSystemWeb.Location,
 			},
@@ -310,8 +318,8 @@ var Annotations = []*annotation.File{
 				Name: "Route",
 				Params: map[string]any{
 					"method": "GET",
-					"name":   "manage.index",
-					"route":  "/",
+					"name": "manage.index",
+					"route": "/",
 				},
 				Func: appSystemWeb.Index,
 			},
@@ -323,8 +331,8 @@ var Annotations = []*annotation.File{
 			{
 				Name: "Resource",
 				Params: map[string]any{
-					"app":   "admin",
-					"name":  "tools.area",
+					"app": "admin",
+					"name": "tools.area",
 					"route": "/tools/area",
 				},
 				Func: appToolsAdmin.AreaRes,
@@ -333,8 +341,8 @@ var Annotations = []*annotation.File{
 				Name: "Action",
 				Params: map[string]any{
 					"method": "POST",
-					"name":   "import",
-					"route":  "",
+					"name": "import",
+					"route": "",
 				},
 				Func: appToolsAdmin.AreaImport,
 			},
@@ -346,8 +354,8 @@ var Annotations = []*annotation.File{
 			{
 				Name: "Resource",
 				Params: map[string]any{
-					"app":   "admin",
-					"name":  "tools.backup",
+					"app": "admin",
+					"name": "tools.backup",
 					"route": "/tools/backup",
 				},
 				Func: appToolsAdmin.BackupRes,
@@ -356,8 +364,8 @@ var Annotations = []*annotation.File{
 				Name: "Action",
 				Params: map[string]any{
 					"method": "POST",
-					"name":   "download",
-					"route":  "/download/:id",
+					"name": "download",
+					"route": "/download/:id",
 				},
 				Func: appToolsAdmin.BackupDownloadList,
 			},
@@ -365,8 +373,8 @@ var Annotations = []*annotation.File{
 				Name: "Action",
 				Params: map[string]any{
 					"method": "POST",
-					"name":   "import",
-					"route":  "/import",
+					"name": "import",
+					"route": "/import",
 				},
 				Func: appToolsAdmin.BackupImport,
 			},
@@ -374,8 +382,8 @@ var Annotations = []*annotation.File{
 				Name: "Action",
 				Params: map[string]any{
 					"method": "GET",
-					"name":   "export",
-					"route":  "/export",
+					"name": "export",
+					"route": "/export",
 				},
 				Func: appToolsAdmin.BackupExportList,
 			},
@@ -383,8 +391,8 @@ var Annotations = []*annotation.File{
 				Name: "Action",
 				Params: map[string]any{
 					"method": "POST",
-					"name":   "export",
-					"route":  "/export",
+					"name": "export",
+					"route": "/export",
 				},
 				Func: appToolsAdmin.BackupExport,
 			},
@@ -396,8 +404,8 @@ var Annotations = []*annotation.File{
 			{
 				Name: "Resource",
 				Params: map[string]any{
-					"app":   "admin",
-					"name":  "tools.file",
+					"app": "admin",
+					"name": "tools.file",
 					"route": "/tools/file",
 				},
 				Func: appToolsAdmin.FileRes,
@@ -410,8 +418,8 @@ var Annotations = []*annotation.File{
 			{
 				Name: "Resource",
 				Params: map[string]any{
-					"app":   "admin",
-					"name":  "tools.fileDir",
+					"app": "admin",
+					"name": "tools.fileDir",
 					"route": "/tools/fileDir",
 				},
 				Func: appToolsAdmin.FileDirRes,
@@ -424,8 +432,8 @@ var Annotations = []*annotation.File{
 			{
 				Name: "Resource",
 				Params: map[string]any{
-					"app":   "admin",
-					"name":  "tools.magic",
+					"app": "admin",
+					"name": "tools.magic",
 					"route": "/tools/magic",
 				},
 				Func: appToolsAdmin.MagicRes,
@@ -434,8 +442,8 @@ var Annotations = []*annotation.File{
 				Name: "Action",
 				Params: map[string]any{
 					"method": "GET",
-					"name":   "config",
-					"route":  "/config",
+					"name": "config",
+					"route": "/config",
 				},
 				Func: appToolsAdmin.MagicConfig,
 			},
@@ -443,8 +451,8 @@ var Annotations = []*annotation.File{
 				Name: "Action",
 				Params: map[string]any{
 					"method": "GET",
-					"name":   "source",
-					"route":  "/source",
+					"name": "source",
+					"route": "/source",
 				},
 				Func: appToolsAdmin.MagicSource,
 			},
@@ -452,8 +460,8 @@ var Annotations = []*annotation.File{
 				Name: "Action",
 				Params: map[string]any{
 					"method": "GET",
-					"name":   "sourceData",
-					"route":  "/sourceData",
+					"name": "sourceData",
+					"route": "/sourceData",
 				},
 				Func: appToolsAdmin.MagicSourceData,
 			},
@@ -465,8 +473,8 @@ var Annotations = []*annotation.File{
 			{
 				Name: "Resource",
 				Params: map[string]any{
-					"app":   "admin",
-					"name":  "tools.data",
+					"app": "admin",
+					"name": "tools.data",
 					"route": "/tools/data",
 				},
 				Func: appToolsAdmin.MagicDataRes,
@@ -479,8 +487,8 @@ var Annotations = []*annotation.File{
 			{
 				Name: "Resource",
 				Params: map[string]any{
-					"app":   "admin",
-					"name":  "tools.magicGroup",
+					"app": "admin",
+					"name": "tools.magicGroup",
 					"route": "/tools/magicGroup",
 				},
 				Func: appToolsAdmin.MagicGroupRes,
@@ -493,8 +501,8 @@ var Annotations = []*annotation.File{
 			{
 				Name: "Resource",
 				Params: map[string]any{
-					"app":   "admin",
-					"name":  "tools.magicSource",
+					"app": "admin",
+					"name": "tools.magicSource",
 					"route": "/tools/magicSource",
 				},
 				Func: appToolsAdmin.MagicSourceRes,
@@ -507,8 +515,8 @@ var Annotations = []*annotation.File{
 			{
 				Name: "RouteGroup",
 				Params: map[string]any{
-					"app":   "admin",
-					"name":  "upload",
+					"app": "admin",
+					"name": "upload",
 					"route": "/upload",
 				},
 			},
@@ -516,8 +524,8 @@ var Annotations = []*annotation.File{
 				Name: "Route",
 				Params: map[string]any{
 					"method": "POST",
-					"name":   "upload",
-					"route":  "",
+					"name": "upload",
+					"route": "",
 				},
 				Func: appToolsAdmin.Upload,
 			},
@@ -539,9 +547,10 @@ var Annotations = []*annotation.File{
 		Name: "dux-project/app/tools/models",
 		Annotations: []*annotation.Annotation{
 			{
-				Name:   "AutoMigrate",
-				Params: map[string]any{},
-				Func:   appToolsModels.ToolsArea{},
+				Name: "AutoMigrate",
+				Params: map[string]any{
+				},
+				Func: appToolsModels.ToolsArea{},
 			},
 		},
 	},
@@ -549,9 +558,10 @@ var Annotations = []*annotation.File{
 		Name: "dux-project/app/tools/models",
 		Annotations: []*annotation.Annotation{
 			{
-				Name:   "AutoMigrate",
-				Params: map[string]any{},
-				Func:   appToolsModels.ToolsBackup{},
+				Name: "AutoMigrate",
+				Params: map[string]any{
+				},
+				Func: appToolsModels.ToolsBackup{},
 			},
 		},
 	},
@@ -559,9 +569,10 @@ var Annotations = []*annotation.File{
 		Name: "dux-project/app/tools/models",
 		Annotations: []*annotation.Annotation{
 			{
-				Name:   "AutoMigrate",
-				Params: map[string]any{},
-				Func:   appToolsModels.ToolsFile{},
+				Name: "AutoMigrate",
+				Params: map[string]any{
+				},
+				Func: appToolsModels.ToolsFile{},
 			},
 		},
 	},
@@ -569,9 +580,10 @@ var Annotations = []*annotation.File{
 		Name: "dux-project/app/tools/models",
 		Annotations: []*annotation.Annotation{
 			{
-				Name:   "AutoMigrate",
-				Params: map[string]any{},
-				Func:   appToolsModels.ToolsFileDir{},
+				Name: "AutoMigrate",
+				Params: map[string]any{
+				},
+				Func: appToolsModels.ToolsFileDir{},
 			},
 		},
 	},
@@ -579,9 +591,10 @@ var Annotations = []*annotation.File{
 		Name: "dux-project/app/tools/models",
 		Annotations: []*annotation.Annotation{
 			{
-				Name:   "AutoMigrate",
-				Params: map[string]any{},
-				Func:   appToolsModels.ToolsMagic{},
+				Name: "AutoMigrate",
+				Params: map[string]any{
+				},
+				Func: appToolsModels.ToolsMagic{},
 			},
 		},
 	},
@@ -589,9 +602,10 @@ var Annotations = []*annotation.File{
 		Name: "dux-project/app/tools/models",
 		Annotations: []*annotation.Annotation{
 			{
-				Name:   "AutoMigrate",
-				Params: map[string]any{},
-				Func:   appToolsModels.ToolsMagicData{},
+				Name: "AutoMigrate",
+				Params: map[string]any{
+				},
+				Func: appToolsModels.ToolsMagicData{},
 			},
 		},
 	},
@@ -599,9 +613,10 @@ var Annotations = []*annotation.File{
 		Name: "dux-project/app/tools/models",
 		Annotations: []*annotation.Annotation{
 			{
-				Name:   "AutoMigrate",
-				Params: map[string]any{},
-				Func:   appToolsModels.ToolsMagicGroup{},
+				Name: "AutoMigrate",
+				Params: map[string]any{
+				},
+				Func: appToolsModels.ToolsMagicGroup{},
 			},
 		},
 	},
@@ -609,10 +624,12 @@ var Annotations = []*annotation.File{
 		Name: "dux-project/app/tools/models",
 		Annotations: []*annotation.Annotation{
 			{
-				Name:   "AutoMigrate",
-				Params: map[string]any{},
-				Func:   appToolsModels.ToolsMagicSource{},
+				Name: "AutoMigrate",
+				Params: map[string]any{
+				},
+				Func: appToolsModels.ToolsMagicSource{},
 			},
 		},
 	},
+	
 }
