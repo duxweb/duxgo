@@ -146,9 +146,9 @@ func loginCheck(id uint, isPass bool, ctx echo.Context) error {
 		return err
 	}
 	loginCount := len(data)
-	loginLast, err := lo.Last[models.LogLogin](data)
+	loginLast, status := lo.Last[models.LogLogin](data)
 
-	if err == nil && loginCount >= 3 && loginLast.CreatedAt.AddSeconds(60).Gt(carbon.Now()) {
+	if status && loginCount >= 3 && loginLast.CreatedAt.AddSeconds(60).Gt(carbon.Now()) {
 		return response.BusinessError(i18n.Trans.Get("system.auth.error.passwordCheck"))
 	}
 
