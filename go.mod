@@ -3,7 +3,7 @@ module dux-project
 go 1.22
 
 require (
-	github.com/duxweb/go-fast v0.0.0
+	github.com/duxweb/go-fast v0.0.1-beta
 	github.com/gabriel-vasile/mimetype v1.4.3
 	github.com/go-errors/errors v1.5.1
 	github.com/go-resty/resty/v2 v2.12.0
@@ -148,4 +148,3 @@ require (
 	modernc.org/sqlite v1.23.1 // indirect
 )
 
-replace github.com/duxweb/go-fast => /Volumes/Web/go-fast
